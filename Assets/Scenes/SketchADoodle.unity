@@ -391,6 +391,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4527368504392492, guid: a87f0180d46fd334b9025d0314a0dc70, type: 3}
   m_PrefabInstance: {fileID: 296138508}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &428972517 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3118633096142581425, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 1891141881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &465497769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1258,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce8c7228121e5347b024e6951d76849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightFootprint: {fileID: 2115755598734156898, guid: 4f88f2235253d1243a8d46e57c6066ba, type: 3}
+  leftFootprint: {fileID: 7412636466895179068, guid: faf06b8d9360d2d48b2fad2c14d89c86, type: 3}
+  rightFootLocation: {fileID: 428972517}
+  leftFootLocation: {fileID: 2048587991}
+  footprintOffset: 0.05
   land: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
   clips:
   - {fileID: 8300000, guid: 4d11813f5983ce047873c94858e6a6c1, type: 3}
@@ -2557,6 +2567,11 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!4 &2048587991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7143893982550613765, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 1891141881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2072003713
 GameObject:
   m_ObjectHideFlags: 0
