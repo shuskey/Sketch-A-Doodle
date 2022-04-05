@@ -10,6 +10,7 @@ TagManager:
   - RestartTheLevel
   - StartPanel
   - StartFallingRegion
+  - Ground
   layers:
   - Default
   - TransparentFX
