@@ -110,7 +110,7 @@ public static class HeightmapFromTexture
         static void DetectFloor(bool invertToUseBlackLines, out float floorTotal, out float floorCount, out float floorAverageGray, int w2, Color[] map)
         {
             // find floor Average
-            float expectedFloor = 0.35f;
+            float expectedFloor = 0.3f;
             floorCount = 0;
             floorTotal = 0;
             for (int y = 0; y < w2; y++)
@@ -136,6 +136,7 @@ public static class HeightmapFromTexture
     {
         var grayToUse = invertToUseBlackLines ? 1f - grayscaleInput : grayscaleInput;
         var rounded = Mathf.Round(grayToUse * 10f) / 10f;
-        return (rounded < floorAverageGray * 2) ? 0f : rounded;
+        var floorLimit = (floorAverageGray + 0.1f) * 2.0f;
+        return (rounded <= floorLimit) ? 0f : rounded;
     }
 }
