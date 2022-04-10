@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: d4e122eed2e366a4193537c29411df70
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - CurrentMazeLevel: {fileID: 11400000, guid: ca3064ed053f4ef4dbb17eb7394d114e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

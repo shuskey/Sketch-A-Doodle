@@ -1,22 +1,32 @@
-using System.IO;
-using UnityEditor;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-public static class HeightmapFromTexture
+
+public class HeightMapFromMazeLevel : MonoBehaviour
 {
-    [MenuItem("Terrain/Heightmap From Black Lined Texture")]
-    static void ApplyHeightmapBlackLines()
+    [SerializeField]
+    private CurrentMazeLevel_ScriptableObject currentMazeLevel;
+    [SerializeField]
+    private GameObject startingPlatform_GameObject;
+    [SerializeField]
+    private GameObject endingGoal_GameObject;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        Texture2D heightmap = Selection.activeObject as Texture2D;
-        ApplyHeightmap(heightmap, invertToUseBlackLines: true);
+        var textureForThisLevel = currentMazeLevel.CurrentMazeLevel.mazeTexture;
+        ApplyHeightmap(textureForThisLevel, invertToUseBlackLines: currentMazeLevel.CurrentMazeLevel.invertToUseBlackLines);
+        endingGoal_GameObject.transform.localPosition = new Vector3(
+            currentMazeLevel.CurrentMazeLevel.endPositionRatio.x * 100f,
+            1.3f,
+            currentMazeLevel.CurrentMazeLevel.endPositionRatio.y * 100f);
+        startingPlatform_GameObject.transform.localPosition = new Vector3(
+            currentMazeLevel.CurrentMazeLevel.startPositionRatio.x * 100f,
+            .15f,
+            currentMazeLevel.CurrentMazeLevel.startPositionRatio.y * 100f);
     }
 
-    // Found At https://answers.unity.com/questions/1349349/heightmap-from-texture-script-converter.html
-    [MenuItem("Terrain/Heightmap From White Lined Texture")]
-    static void ApplyHeightmapWhiteLines()
-    {
-        Texture2D heightmap = Selection.activeObject as Texture2D;
-        ApplyHeightmap(heightmap);
-    }
+    
 
     static void ApplyHeightmap(Texture2D heightmap, bool invertToUseBlackLines = false)
     {
@@ -25,10 +35,10 @@ public static class HeightmapFromTexture
         float floorCount;
         float floorAverageGray;
         //string heightmapPath = EditorUtility.OpenFilePanel("Texture", GetFolderPath(SpecialFolder.Desktop), ".png");
-        
+
         if (heightmap == null)
         {
-            EditorUtility.DisplayDialog("No texture selected", "Please select a texture.", "Cancel");
+            Debug.Log("No texture selected");
             return;
         }
         var terrain = Terrain.activeTerrain.terrainData;
@@ -47,10 +57,6 @@ public static class HeightmapFromTexture
                 float dy = (float)h / (float)w2;
                 for (int y = 0; y < w2; y++)
                 {
-                    if (y % 20 == 0)
-                    {
-                        EditorUtility.DisplayProgressBar("Resize", "Calculating texture", Mathf.InverseLerp(0.0f, w2, y));
-                    }
                     int thisY = Mathf.FloorToInt(dy * y) * w;
                     int yw = y * w2;
                     for (int x = 0; x < w2; x++)
@@ -66,10 +72,6 @@ public static class HeightmapFromTexture
                 float ratioY = (1.0f / ((float)w2 / (h - 1)));
                 for (int y = 0; y < w2; y++)
                 {
-                    if (y % 20 == 0)
-                    {
-                        EditorUtility.DisplayProgressBar("Resize", "Calculating texture", Mathf.InverseLerp(0.0f, w2, y));
-                    }
                     int yy = Mathf.FloorToInt(y * ratioY);
                     int y1 = yy * w;
                     int y2 = (yy + 1) * w;
@@ -86,7 +88,6 @@ public static class HeightmapFromTexture
                     }
                 }
             }
-            EditorUtility.ClearProgressBar();
         }
         else
         {
