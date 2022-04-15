@@ -22,13 +22,11 @@ public class FootSteps : MonoBehaviour
 
     private AudioSource audioSource;
 
-
-
-
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
+
     private void RightFootstep()
     {
         var clip = GetRandomClip();

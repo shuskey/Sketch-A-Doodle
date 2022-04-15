@@ -16,5 +16,5 @@ MonoBehaviour:
   creator: Grace Nazar
   mazeTexture: {fileID: 2800000, guid: a85ca65c1e617d84bafadfcebd9e2788, type: 3}
   invertToUseBlackLines: 1
-  startPositionRatio: {x: 0.02, y: 0.02}
-  endPositionRatio: {x: 0.48, y: 0.5}
+  startPositionRatio: {x: 0.1075, y: 0.04}
+  endPositionRatio: {x: 0.48, y: 0.585}

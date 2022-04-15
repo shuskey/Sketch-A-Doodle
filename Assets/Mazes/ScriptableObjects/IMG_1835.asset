@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 595e90fd097a6d44fa0c78ddbbf4296a, type: 3}
-  m_Name: IMG_1896
+  m_Name: IMG_1835
   m_EditorClassIdentifier: 
-  title: 
-  creator: 
-  mazeTexture: {fileID: 2800000, guid: a5c11a5ba6a6f6741b5f280685e86e07, type: 3}
+  title: Shhhhh!
+  creator: Scott
+  mazeTexture: {fileID: 2800000, guid: 6a700b4eb000c5f4c87c782c304bd5a4, type: 3}
   invertToUseBlackLines: 1
-  startPositionRatio: {x: 0.24, y: 0.42239988}
-  endPositionRatio: {x: 0.94560015, y: 0.66239995}
+  startPositionRatio: {x: 0.17, y: 0.055}
+  endPositionRatio: {x: 0.8475, y: 0.9}

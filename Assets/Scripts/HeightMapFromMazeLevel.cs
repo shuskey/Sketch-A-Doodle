@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HeightMapFromMazeLevel : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class HeightMapFromMazeLevel : MonoBehaviour
     private GameObject startingPlatform_GameObject;
     [SerializeField]
     private GameObject endingGoal_GameObject;
+    [SerializeField]
+    private TMP_Text mazeCreditsText;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,8 @@ public class HeightMapFromMazeLevel : MonoBehaviour
             currentMazeLevel.CurrentMazeLevel.startPositionRatio.x * 100f,
             .15f,
             currentMazeLevel.CurrentMazeLevel.startPositionRatio.y * 100f);
+
+        mazeCreditsText.text = $"Title: {currentMazeLevel.CurrentMazeLevel.title}, Created by: {currentMazeLevel.CurrentMazeLevel.creator}";
     }
 
     

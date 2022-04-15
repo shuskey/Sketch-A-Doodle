@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e122eed2e366a4193537c29411df70, type: 3}
   m_Name: Current Maze Level
   m_EditorClassIdentifier: Assembly-CSharp::CurrentLevel
-  CurrentMazeLevel: {fileID: 11400000, guid: 934acc3861e20dd4cbffd2522b072090, type: 2}
+  CurrentMazeLevel: {fileID: 11400000, guid: 810065b3b01517844be03510f824d426, type: 2}

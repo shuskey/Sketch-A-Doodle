@@ -1,10 +1,14 @@
 Sketch A Doodle Readme
 To Add:
 [ ] option to make mini map close/open
-[ ] UI button and or input button to restart or end the game
-[ ] See how Scriptable Objects might help with Maze Data (name, creator, texture, start location, end location)
+[ ] Can I get a Maze Scan from the Laptop camera - or external camera - while running Unity ?
+
 
 -- COMPLETE --
+[X] UI button and or input button to restart or end the game
+[X] See how Scriptable Objects might help with Maze Data (name, creator, texture, start location, end location)
+[X] Read complete list of scriptable maze objects into a list
+[X] Display a scrollable list of Maze Display game objects based on list of Maze Scriptable Objects
 [X] affix camera to player - Or '1st person player' - and/or fix 'look around' jerkiness
 [X] Have a fog around the mini map, fog dissipates as you travel around the maze
 [X] Footprints would be cool

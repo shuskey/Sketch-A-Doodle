@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595e90fd097a6d44fa0c78ddbbf4296a, type: 3}
   m_Name: Scott_1
   m_EditorClassIdentifier: 
-  title: 
-  creator: Scott Huskey
+  title: Crazy Weave O-La-La
+  creator: Scott
   mazeTexture: {fileID: 2800000, guid: 8545708e71a40c347b238d215c51ef88, type: 3}
   invertToUseBlackLines: 1
-  startPositionRatio: {x: 0.55, y: 0.55}
-  endPositionRatio: {x: 0.98, y: 0.98}
+  startPositionRatio: {x: 0.037500307, y: 0.0475}
+  endPositionRatio: {x: 0.9425003, y: 0.9724999}

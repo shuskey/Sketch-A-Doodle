@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SketchADoodle.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 7dc0843c87d6d2a4d803bb99146107be
+  - enabled: 1
+    path: Assets/Scenes/EditMazeLevel.unity
+    guid: 85d26a76b11839f45b2c9c7c567c90dc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

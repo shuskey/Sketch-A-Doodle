@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 595e90fd097a6d44fa0c78ddbbf4296a, type: 3}
-  m_Name: IMG_1896
+  m_Name: round
   m_EditorClassIdentifier: 
-  title: 
-  creator: 
-  mazeTexture: {fileID: 2800000, guid: a5c11a5ba6a6f6741b5f280685e86e07, type: 3}
+  title: Center of the Earth
+  creator: Internet
+  mazeTexture: {fileID: 2800000, guid: 37898aae8e9341a48ba2a9d3711cdfbe, type: 3}
   invertToUseBlackLines: 1
-  startPositionRatio: {x: 0.24, y: 0.42239988}
-  endPositionRatio: {x: 0.94560015, y: 0.66239995}
+  startPositionRatio: {x: 0.4949997, y: 0.4975}
+  endPositionRatio: {x: 0.0575, y: 0.094999924}
