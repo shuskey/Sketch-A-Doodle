@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EditMazeLevel.unity
     guid: 85d26a76b11839f45b2c9c7c567c90dc
+  - enabled: 1
+    path: Assets/Scenes/ScanMaze.unity
+    guid: 7cd8467173d46dc4d9227bb70f84809b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

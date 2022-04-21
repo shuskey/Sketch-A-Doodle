@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -31,7 +32,18 @@ public class EditMaze : MonoBehaviour
         titleInput.text = maze_ScriptableObject.title;
         creatorInput.text = maze_ScriptableObject.creator;
         fileName.text = $"Filename: {maze_ScriptableObject.name}";
-        mazeImage.sprite = Sprite.Create(maze_ScriptableObject.mazeTexture, new Rect(0.0f, 0.0f, maze_ScriptableObject.mazeTexture.width, maze_ScriptableObject.mazeTexture.height), new Vector2(0.5f, 0.5f));
+        if (maze_ScriptableObject.mazeTexture == null)
+        {
+            var imageAssetBytes = File.ReadAllBytes(maze_ScriptableObject.mazeTextureFileName);
+            Texture2D textureFromFile = new Texture2D(2, 2);
+            textureFromFile.LoadImage(imageAssetBytes);
+            textureFromFile.name = maze_ScriptableObject.name;
+            mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+        }
+        else
+        {
+            mazeImage.sprite = Sprite.Create(maze_ScriptableObject.mazeTexture, new Rect(0.0f, 0.0f, maze_ScriptableObject.mazeTexture.width, maze_ScriptableObject.mazeTexture.height), new Vector2(0.5f, 0.5f));
+        }
         panelWidth = GetComponent<RectTransform>().rect.width;
         panelHeight = GetComponent<RectTransform>().rect.height;
         startPositionMarker.GetComponent<RectTransform>().anchoredPosition =

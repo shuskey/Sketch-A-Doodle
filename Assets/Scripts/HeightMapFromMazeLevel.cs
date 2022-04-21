@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class HeightMapFromMazeLevel : MonoBehaviour
 {
@@ -16,9 +17,8 @@ public class HeightMapFromMazeLevel : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        var textureForThisLevel = currentMazeLevel.CurrentMazeLevel.mazeTexture;
-        ApplyHeightmap(textureForThisLevel, invertToUseBlackLines: currentMazeLevel.CurrentMazeLevel.invertToUseBlackLines);
+    {        
+        ApplyHeightmap(currentMazeLevel, invertToUseBlackLines: currentMazeLevel.CurrentMazeLevel.invertToUseBlackLines);
         endingGoal_GameObject.transform.localPosition = new Vector3(
             currentMazeLevel.CurrentMazeLevel.endPositionRatio.x * 100f,
             1.3f,
@@ -31,21 +31,23 @@ public class HeightMapFromMazeLevel : MonoBehaviour
         mazeCreditsText.text = $"Title: {currentMazeLevel.CurrentMazeLevel.title}, Created by: {currentMazeLevel.CurrentMazeLevel.creator}";
     }
 
-    
 
-    static void ApplyHeightmap(Texture2D heightmap, bool invertToUseBlackLines = false)
+    static void ApplyHeightmap(CurrentMazeLevel_ScriptableObject currentMazeLevel, bool invertToUseBlackLines = false)
     {
+        var heightmap = currentMazeLevel.CurrentMazeLevel.mazeTexture;
+        if (heightmap == null)
+        {
+            var imageAssetBytes = File.ReadAllBytes(currentMazeLevel.CurrentMazeLevel.mazeTextureFileName);
+            heightmap = new Texture2D(2, 2);
+            heightmap.LoadImage(imageAssetBytes);
+            heightmap.name = currentMazeLevel.CurrentMazeLevel.name;            
+        }
+
         bool floorIsWhite = invertToUseBlackLines;
         float floorTotal;
         float floorCount;
         float floorAverageGray;
-        //string heightmapPath = EditorUtility.OpenFilePanel("Texture", GetFolderPath(SpecialFolder.Desktop), ".png");
 
-        if (heightmap == null)
-        {
-            Debug.Log("No texture selected");
-            return;
-        }
         var terrain = Terrain.activeTerrain.terrainData;
         int w = heightmap.width;
         int h = heightmap.height;

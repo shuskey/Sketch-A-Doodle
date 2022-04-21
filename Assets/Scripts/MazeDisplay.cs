@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.IO;
 
 public class MazeDisplay : MonoBehaviour, IPointerClickHandler
 {
@@ -20,7 +21,19 @@ public class MazeDisplay : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        mazeImage.sprite = Sprite.Create(maze_SO.mazeTexture, new Rect(0.0f, 0.0f, maze_SO.mazeTexture.width, maze_SO.mazeTexture.height), new Vector2(0.5f, 0.5f));
+
+        if (maze_SO.mazeTexture == null)
+        {
+            var imageAssetBytes = File.ReadAllBytes(maze_SO.mazeTextureFileName);
+            Texture2D textureFromFile = new Texture2D(2, 2);
+            textureFromFile.LoadImage(imageAssetBytes);
+            textureFromFile.name = maze_SO.name;
+            mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+        }
+        else
+        {
+            mazeImage.sprite = Sprite.Create(maze_SO.mazeTexture, new Rect(0.0f, 0.0f, maze_SO.mazeTexture.width, maze_SO.mazeTexture.height), new Vector2(0.5f, 0.5f));
+        }
         var panelWidth = GetComponent<RectTransform>().rect.width;
         var panelHeight = GetComponent<RectTransform>().rect.height;
         startPositionMarker.GetComponent<RectTransform>().anchoredPosition = 

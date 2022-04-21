@@ -8,10 +8,17 @@ public class GetMazeSOList : MonoBehaviour
     [SerializeField] private GameObject mazePanelPrefab;
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+
+        StartCoroutine(GetAndInstantiateMazPanelsCoroutine());
+        
+    }
+
+    IEnumerator GetAndInstantiateMazPanelsCoroutine()
+    {
 
         string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Mazes/ScriptableObjects" });
-       
+
         foreach (string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
@@ -19,6 +26,7 @@ public class GetMazeSOList : MonoBehaviour
             var mazePanel = Instantiate(mazePanelPrefab);
             mazePanel.GetComponent<MazeDisplay>().Initialize(maze_SO);
             mazePanel.transform.SetParent(transform);
+            yield return null;
         }
         
     }

@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class OnClick : MonoBehaviour, IPointerClickHandler
+public class OnClickGoScan : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        SceneManager.LoadScene("Scenes/Intro");
+        SceneManager.LoadScene("Scenes/ScanMaze");
     }
 }

@@ -11,6 +11,8 @@ public class MazeLevel_ScriptableObject : ScriptableObject
     public string creator;
     [Header("The texture for this maze.")]
     public Texture2D mazeTexture;
+    [Header("The File Name for the texture for this maze.")]
+    public string mazeTextureFileName;
     [Header("If you have a maze with a white background, this should be true.")]
     public bool invertToUseBlackLines;
     [Header("Range 0.0 to 1.0 for each coordinate.")]
