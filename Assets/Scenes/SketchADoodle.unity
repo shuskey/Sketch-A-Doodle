@@ -874,6 +874,7 @@ MonoBehaviour:
   miniMapExpandIcon: {fileID: 21300000, guid: fb58b315da9e11246902f075cea7fae4, type: 3}
   miniMapShrinkIcon: {fileID: 21300000, guid: 0f4d635bc48313f4a9d28bdf3ebbdfcd, type: 3}
   miniMapCamera: {fileID: 1239893308}
+  playerArmature: {fileID: 1193591949}
 --- !u!114 &789892608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1271,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880795576}
   m_CullTransparentMesh: 1
+--- !u!1 &891507835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8338988566280778634, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 1891141881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &976516178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,6 +1605,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1193591961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193591949}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 15
+  SprintSpeed: 60
+  RotationSpeed: 1
+  SpeedChangeRate: 10
+  JumpHeight: 1.2
+  Gravity: -15
+  JumpTimeout: 0.1
+  FallTimeout: 0.15
+  Grounded: 1
+  GroundedOffset: -0.14
+  GroundedRadius: 0.5
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  CinemachineCameraTarget: {fileID: 891507835}
+  TopClamp: 90
+  BottomClamp: -90
 --- !u!1 &1206733512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3003,6 +3038,10 @@ PrefabInstance:
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: TopClamp
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: JumpHeight
