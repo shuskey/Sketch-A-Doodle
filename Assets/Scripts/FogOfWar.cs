@@ -91,6 +91,7 @@ public class FogOfWar : MonoBehaviour
     {
         GameObject gameObject = new GameObject("FogOfWarPlane");
         gameObject.layer = layer;
+        gameObject.tag = "FogOfWar";
         MeshFilter meshFilter = gameObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
         MeshRenderer meshRenderer = gameObject.AddComponent(typeof(MeshRenderer)) as MeshRenderer;
         MeshCollider meshCollider = gameObject.AddComponent(typeof(MeshCollider)) as MeshCollider;

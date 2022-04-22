@@ -1,8 +1,6 @@
 Sketch A Doodle Readme
 To Add:
-[ ] option to make mini map close/open
-[ ] option to clear Fog of War
-[ ] Option to play as just a 2D maze - Think Mini Map Only
+[ ] Need to lock 'player rotation' in 2D Maze Mode
 [ ] Options for Wall Type: See through or not, High or Low
 [ ] Can I get rid of UnityEditor functions, so this runs outside the editor
 [ ] Can a maze be added by giving it a URL to an online image
@@ -10,6 +8,9 @@ To Add:
 [ ] Add brightness/contrast settings to WebCam capture screen
 
 -- COMPLETE --
+[X] option to make mini map close/open
+[X] option to clear Fog of War
+[X] Option to play as just a 2D maze - Think Mini Map Only
 [X] Can I get a Maze Scan from the Laptop camera - or external camera - while running Unity ?
 [X] UI button and or input button to restart or end the game
 [X] See how Scriptable Objects might help with Maze Data (name, creator, texture, start location, end location)

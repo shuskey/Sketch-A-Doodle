@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 965636986038058903}
   - component: {fileID: 8102221525814464943}
   m_Layer: 0
-  m_Name: Cherry (1)
+  m_Name: Cherry in the sky
   m_TagString: WinTheLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,8 +190,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.27986696, y: 0.25430357, z: 0.19360238}
-  m_Center: {x: 0, y: 0.12715182, z: 0.0000000037252903}
+  m_Size: {x: 1, y: 0.3, z: 1}
+  m_Center: {x: 0, y: 0.13, z: 0}
 --- !u!1 &6704857489042608989
 GameObject:
   m_ObjectHideFlags: 0
