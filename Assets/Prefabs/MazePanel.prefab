@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 726660053431240395}
   - component: {fileID: 8740521538630328902}
   m_Layer: 5
-  m_Name: EdirButon
+  m_Name: EditButon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

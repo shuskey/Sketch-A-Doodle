@@ -15,9 +15,21 @@ public class HeightMapFromMazeLevel : MonoBehaviour
     [SerializeField]
     private TMP_Text mazeCreditsText;
 
+    [SerializeField] private GameObject miniMapCamera;
+    [SerializeField] private GameObject mapToggleButton;
+
+    [SerializeField] private GameObject playerArmature;
+
+    [SerializeField] private GameObject pointerSphere;
+
+    private readonly Rect fullScreenViewportRect = new Rect(0, 0, 1, 1);
+    private readonly Rect minimapViewportRect = new Rect(0.7f, 0.6f, 0.3f, 0.4f);
+
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        SetPlayMode();  // 2D or 3D
+
         ApplyHeightmap(currentMazeLevel, invertToUseBlackLines: currentMazeLevel.CurrentMazeLevel.invertToUseBlackLines);
         endingGoal_GameObject.transform.localPosition = new Vector3(
             currentMazeLevel.CurrentMazeLevel.endPositionRatio.x * 100f,
@@ -28,7 +40,31 @@ public class HeightMapFromMazeLevel : MonoBehaviour
             .15f,
             currentMazeLevel.CurrentMazeLevel.startPositionRatio.y * 100f);
 
-        mazeCreditsText.text = $"Title: {currentMazeLevel.CurrentMazeLevel.title}, Created by: {currentMazeLevel.CurrentMazeLevel.creator}";
+        mazeCreditsText.text = $"Title: {currentMazeLevel.CurrentMazeLevel.title}, Creator: {currentMazeLevel.CurrentMazeLevel.creator}";       
+    }
+
+    void SetPlayMode()
+    {
+        var camera = miniMapCamera.GetComponent<Camera>();
+        var currentPlayMode = MazePlayMode.mazePlayMode;
+        switch (currentPlayMode)
+        {
+            case EnumMazePlayMode.PlayMode2D:            
+                camera.rect = fullScreenViewportRect;
+                playerArmature.GetComponent<StarterAssets.ThirdPersonController>().enabled = false;
+                playerArmature.GetComponent<StarterAssets.FirstPersonMoveOnlyController>().enabled = true;
+                playerArmature.GetComponent<StarterAssets.FirstPersonMoveOnlyController>().Restart();
+                pointerSphere.GetComponent<Renderer>().enabled = false;                                
+                break;
+
+            default:    // 3D Mode
+                camera.rect = minimapViewportRect;
+                playerArmature.GetComponent<StarterAssets.FirstPersonMoveOnlyController>().enabled = false;
+                playerArmature.GetComponent<StarterAssets.ThirdPersonController>().enabled = true;
+                playerArmature.GetComponent<StarterAssets.ThirdPersonController>().Restart();
+                pointerSphere.GetComponent<Renderer>().enabled = true;                               
+                break;            
+        }
     }
 
 

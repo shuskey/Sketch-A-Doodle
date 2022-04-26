@@ -16,7 +16,7 @@ public class OnClickToggleMiniMap: MonoBehaviour, IPointerClickHandler
     {
         TurnOffFogNext,
         CloseMapNext,
-        OpenMapNext
+        TurnOnFogNext
     }
 
     private MiniMapState currentState = MiniMapState.TurnOffFogNext;
@@ -37,24 +37,40 @@ public class OnClickToggleMiniMap: MonoBehaviour, IPointerClickHandler
                 // find and turn off Fog of War                
                 if (fogOfWarPlane != null && fogOfWarPlane[0] != null)
                     fogOfWarPlane[0].GetComponent<Renderer>().enabled = false;
-                currentState = MiniMapState.CloseMapNext;
-                this.GetComponent<Image>().sprite = miniMapCloseIcon;
+                // Setup buttons for next transition
+                if (MazePlayMode.mazePlayMode != EnumMazePlayMode.PlayMode2D)
+                {
+                    currentState = MiniMapState.CloseMapNext;
+                    this.GetComponent<Image>().sprite = miniMapCloseIcon;
+                }
+                else
+                {
+                    currentState = MiniMapState.TurnOnFogNext;
+                    this.GetComponent<Image>().sprite = miniMapOnIcon;
+                }
                 break;
+                // 3D ONLY
             case MiniMapState.CloseMapNext:
                 // turn fog of war back on
                 if (fogOfWarPlane != null && fogOfWarPlane[0] != null)
                     fogOfWarPlane[0].GetComponent<Renderer>().enabled = true;
                 // turn off mini map
                 miniMapCamera.SetActive(false);
-                currentState = MiniMapState.OpenMapNext;
+                // Setup buttons for next transition
+                currentState = MiniMapState.TurnOnFogNext;
                 this.GetComponent<Image>().sprite = miniMapOnIcon;
                 break;
-            case MiniMapState.OpenMapNext:
-                // turn on mini map
+            case MiniMapState.TurnOnFogNext:
+                // turn fog of war back on
+                if (fogOfWarPlane != null && fogOfWarPlane[0] != null)
+                    fogOfWarPlane[0].GetComponent<Renderer>().enabled = true;
+                // turn off mini map
                 miniMapCamera.SetActive(true);
+                // Setup buttons for next transition
                 currentState = MiniMapState.TurnOffFogNext;
                 this.GetComponent<Image>().sprite = miniMapFogOffIcon;
                 break;
+
             default:
                 break;
         }

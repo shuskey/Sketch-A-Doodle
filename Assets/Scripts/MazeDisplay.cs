@@ -57,12 +57,13 @@ public class MazeDisplay : MonoBehaviour, IPointerClickHandler
 
         SceneManager.LoadScene("Scenes/EditMazeLevel");
     }
+
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         currentLevel_SO.CurrentMazeLevel = maze_SO;
         EditorUtility.SetDirty(currentLevel_SO);
         AssetDatabase.SaveAssets();
 
-        SceneManager.LoadScene("Scenes/SketchADoodle");
+        SceneManager.LoadScene("Scenes/ChoosePlayMode");
     }
 }

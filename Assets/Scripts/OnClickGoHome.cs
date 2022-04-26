@@ -8,6 +8,6 @@ public class OnClickGoHome : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        SceneManager.LoadScene("Scenes/Intro");
+        SceneManager.LoadScene("Scenes/ChoosePlayMode");
     }
 }
