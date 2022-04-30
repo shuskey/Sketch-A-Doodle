@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using Assets.Scripts.Enums;
 
 public class HeightMapFromMazeLevel : MonoBehaviour
 {
@@ -28,23 +29,32 @@ public class HeightMapFromMazeLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetPlayMode();  // 2D or 3D
+        SetPlayMode(allDisabled: true); // put a pause on the Character Controllers while we re-set the scene
 
-        ApplyHeightmap(currentMazeLevel, invertToUseBlackLines: currentMazeLevel.CurrentMazeLevel.invertToUseBlackLines);
+        ApplyHeightmap(currentMazeLevel, invertToUseBlackLines: currentMazeLevel.CurrentMazeLevel_DO.invertToUseBlackLines);
         endingGoal_GameObject.transform.localPosition = new Vector3(
-            currentMazeLevel.CurrentMazeLevel.endPositionRatio.x * 100f,
+            currentMazeLevel.CurrentMazeLevel_DO.endPositionRatio.x * 100f,
             1.3f,
-            currentMazeLevel.CurrentMazeLevel.endPositionRatio.y * 100f);
+            currentMazeLevel.CurrentMazeLevel_DO.endPositionRatio.y * 100f);
         startingPlatform_GameObject.transform.localPosition = new Vector3(
-            currentMazeLevel.CurrentMazeLevel.startPositionRatio.x * 100f,
+            currentMazeLevel.CurrentMazeLevel_DO.startPositionRatio.x * 100f,
             .15f,
-            currentMazeLevel.CurrentMazeLevel.startPositionRatio.y * 100f);
+            currentMazeLevel.CurrentMazeLevel_DO.startPositionRatio.y * 100f);
 
-        mazeCreditsText.text = $"Title: {currentMazeLevel.CurrentMazeLevel.title}, Creator: {currentMazeLevel.CurrentMazeLevel.creator}";       
+        mazeCreditsText.text = $"Title: {currentMazeLevel.CurrentMazeLevel_DO.title}, Creator: {currentMazeLevel.CurrentMazeLevel_DO.creator}";
+
+        SetPlayMode();  // 2D or 3D
     }
 
-    void SetPlayMode()
+    void SetPlayMode(bool allDisabled = false)
     {
+        if (allDisabled)  //Helpfull when trying to place the Players Starting platform and getting the player to get placed correctly at start up
+        {
+            playerArmature.GetComponent<StarterAssets.ThirdPersonController>().enabled = false;
+            playerArmature.GetComponent<StarterAssets.FirstPersonMoveOnlyController>().enabled = false;
+            return;
+        }
+        
         var camera = miniMapCamera.GetComponent<Camera>();
         var currentPlayMode = MazePlayMode.mazePlayMode;
         switch (currentPlayMode)
@@ -70,14 +80,11 @@ public class HeightMapFromMazeLevel : MonoBehaviour
 
     static void ApplyHeightmap(CurrentMazeLevel_ScriptableObject currentMazeLevel, bool invertToUseBlackLines = false)
     {
-        var heightmap = currentMazeLevel.CurrentMazeLevel.mazeTexture;
-        if (heightmap == null)
-        {
-            var imageAssetBytes = File.ReadAllBytes(currentMazeLevel.CurrentMazeLevel.mazeTextureFileName);
-            heightmap = new Texture2D(2, 2);
-            heightmap.LoadImage(imageAssetBytes);
-            heightmap.name = currentMazeLevel.CurrentMazeLevel.name;            
-        }
+
+        var imageAssetBytes = File.ReadAllBytes(currentMazeLevel.CurrentMazeLevel_DO.mazeTextureFileName);
+        var heightmap = new Texture2D(2, 2);
+        heightmap.LoadImage(imageAssetBytes);
+        heightmap.name = currentMazeLevel.CurrentMazeLevel_DO.mazeTextureFileName;            
 
         bool floorIsWhite = invertToUseBlackLines;
         float floorTotal;

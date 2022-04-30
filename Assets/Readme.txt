@@ -1,18 +1,49 @@
 Sketch A Doodle Readme
-To Add:
-[ ] Collect High Scores (perhaps top 5) for each maze one table for 2D one for 3D
-[ ] Edit screen can re-initialize high scores
-[ ] convert Maze scriptable objects into serialized data save/load.
-[ ] Add SQLite
-[ ] Options for Wall Type: See through or not, High or Low
+To Add/Fix:
+--- WHILE PLAYING SCREENS (2D & 3D)
+Allow Player chooser changes
+Display Personal Best on screen "now playing 2D/3D screen" while playing
+When Goal Achieved and timer stops, evaluate: (New Scene/screen ??)
+ - Is this a personal best for the current player
+      No, Great Time, but not a personal best (let user change current player for a different evaluation)
+	  Yes, Excellent, New Personal Speed Record!  This puts you in 10th place (or what ever)
+ - Button choices [Try Again (goes to playmode chooser screen)] [Home/Back/(back to play this maze)]  <If new personal record, then save New High Score>
+ 
+--- PLAY YOUR MAZE CHOOSER SCREEN
+This screen loads slowly - how to fix this? Smaller images ??
+On "Play Your Maze" screen use title of maze not file name
+Fix layout of "Play Your Maze" scrolling area so that all titles show (bottom ones not showing)
+Move Edit button to "Choose your play mode" screen
 
+--- CHOOSE YOUR PLAY MODE 2D 3D SCREEN
+High Scores should be listed on the "play 2D or 3D" screen
+  Display Top 5 scores/player name for 2D, Top 5 for 3D
+Move Edit button from Play your Maze to "play 2D or 3D" (Or integrated 'edit funtions' into this "play 2D or 3D" screen)
+Add PlayerChooser to "play 2D or 3D" screen
+Display Starting and ending Sprites (green dot, cherry)
+
+--- EDIT SCREEN
+FileName not shown on Edit Screen
+Add toggle for InvertforBlack lines to edit screen.
+Add a "Delete Maze" ability somewhere that would be protected from button mashing monkey users
+Title and Creator edit fields should be labeled on Edit Screen
+Edit screen can re-initialize high scores - Add Clear all HighScores ability.
+Add brightness/contrast settings to WebCam capture screen
+
+[ ] Worse in 2D mode - when falling diable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
+[ ] Snap picture screen should go right to 'edit' screen after 'Snap'
+
+[ ] Add Player Chooser to Snap picture screen
+[ ] Options for Wall Type: See through or not, High or Low
 [ ] When Cherry is triggered - remove the parent or turn it into something else - crown, rainbow, gold coin
 [ ] Can I get rid of UnityEditor functions, so this runs outside the editor
 [ ] Can a maze be added by giving it a URL to an online image
 [ ] Can this run as a Web App
-[ ] Add brightness/contrast settings to WebCam capture screen
 
 -- COMPLETE --
+[X] FIX: Initial Player position is (0,0) - falling usually fixes this
+[X] convert Maze scriptable objects into serialized data save/load.
+[X] Add SQLite
 [X] Player chooses 2D or 3D play mode
 [X] Should have a restart level button - like falling off the edge, but on purpose -> Back Button does this
 [X] Need to lock 'player rotation' in 2D Maze Mode
@@ -39,26 +70,7 @@ FYI - Scripts attached to Player
 Audio Source
 Trigger Tracker
 Timer (connect to Text Mesh Pro) ElapsedTimer Text & StartTimer Text
-Foot Steps - hase images for foot prints, location of feet, audio clip for jump landing sound, list of footsteps sound clips
+Foot Steps - has images for foot prints, location of feet, audio clip for jump landing sound, list of footsteps sound clips
 
-Data for Maze Level Serialization
-    [Header("Title for this maze..")]  							public string title;
-    [Header("Who created this maze?")] 							public string creator;
-    [Header("The File Name for the texture for this maze.")]	public string mazeTextureFileName;
-    [Header("True if you have a maze with a white background.")]public bool invertToUseBlackLines;
-    [Header("Range 0.0 to 1.0 for each coordinate.")]			public Vector2 startPositionRatio;  // range from 0.0 to 1.0 for each x and y
-    [Header("Range 0.0 to 1.0 for each coordinate.")]			public Vector2 endPositionRatio; 
-	[Header("Date Created")]									public DateTime CreatedDate;
-	[Header("Populatity based on number of completed plays")]	public int numberOfPlayThroughs; 
-	[Header("High scores for 3D play")]							public List<MazeHighScore> highScores3D; 	
-	[Header("High scores for 2D play")]							public List<MazeHighScore> highScores2D; 	
-	
-	MazeHighScore:
-	[Header("Place 1st,2nd,3rd,4th,5th")]						public int place;
-	[Header("Player Name")]										public int playerName;
-	[Header("Date recorded")]									public DateTime dateForScore;
-	// perhaps Awarded Score calculated like 1000 - time in seconds + treasure_value X quatitly - enemy_damage X quantity - jump_cost X quantity
-	[Header("Awarded Score")]									public int score;
-	[Header("Time in seconds")]									public int timeInSeconds;
-	[Header("Number of jumps")]									public int numberOfJumps;
+
 	

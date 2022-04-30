@@ -1,3 +1,4 @@
+using Assets.Scripts.Enums;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -21,22 +22,16 @@ public class ChoosePlayMode : MonoBehaviour
         if (BackGroundManager.bgInstance != null)
             BackGroundManager.bgInstance.Audio.Stop();
 
-        var maze_ScriptableObject = level_SO.CurrentMazeLevel;
+        var mazeLevel = level_SO.CurrentMazeLevel_DO;
 
-        mazeTitle.text = $"Title: {maze_ScriptableObject.title}, Creator: {maze_ScriptableObject.creator}";
+        mazeTitle.text = $"Title: {mazeLevel.title}, Creator: {mazeLevel.creator}";
 
-        if (maze_ScriptableObject.mazeTexture == null)
-        {
-            var imageAssetBytes = File.ReadAllBytes(maze_ScriptableObject.mazeTextureFileName);
-            Texture2D textureFromFile = new Texture2D(2, 2);
-            textureFromFile.LoadImage(imageAssetBytes);
-            textureFromFile.name = maze_ScriptableObject.name;
-            mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
-        }
-        else
-        {
-            mazeImage.sprite = Sprite.Create(maze_ScriptableObject.mazeTexture, new Rect(0.0f, 0.0f, maze_ScriptableObject.mazeTexture.width, maze_ScriptableObject.mazeTexture.height), new Vector2(0.5f, 0.5f));
-        }
+        var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
+        Texture2D textureFromFile = new Texture2D(2, 2);
+        textureFromFile.LoadImage(imageAssetBytes);
+        textureFromFile.name = mazeLevel.mazeTextureFileName;
+        mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+
         Play2DButton.onClick.AddListener(Play2DOnClick);
         Play3DButton.onClick.AddListener(Play3DOnClick);
         CancelButton.onClick.AddListener(CancelOnClick);

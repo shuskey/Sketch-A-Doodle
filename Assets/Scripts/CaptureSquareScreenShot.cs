@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using UnityEditor;
+using Assets.Scripts.DataProviders;
+using Assets.Scripts.DataObjects;
 
 public class CaptureSquareScreenShot : MonoBehaviour
 {
@@ -46,21 +48,15 @@ public class CaptureSquareScreenShot : MonoBehaviour
 		var completeFileName = Application.dataPath + $"/Mazes/{newName}.png";
 		File.WriteAllBytes(completeFileName, bytes);
 
-		//File.ReadAllBytes
-		CreateScriptableObject(newName, completeFileName, invertToUseBlackLines: true);
+		CreateMazeLevelInDataBase(newName, completeFileName, invertToUseBlackLines: true);
 	}
 
-	void CreateScriptableObject(string name, string fullFileName, bool invertToUseBlackLines)
+	void CreateMazeLevelInDataBase(string name, string fullFileName, bool invertToUseBlackLines)
     {
-		var saveObj = ScriptableObject.CreateInstance<MazeLevel_ScriptableObject>();
-
-		saveObj.name = name;
-		//saveObj.mazeTexture = texture;
-		saveObj.mazeTextureFileName = fullFileName;
-		saveObj.invertToUseBlackLines = invertToUseBlackLines;
-
-		AssetDatabase.CreateAsset(saveObj, $"Assets/Mazes/ScriptableObjects/{name}.asset");
-		EditorUtility.SetDirty(saveObj);
-		AssetDatabase.SaveAssets();
-	}
+		var mazeListDataBase = new ListOfMazesFromDataBase();
+		mazeListDataBase.CreateDataBaseFileIfNotExists();
+		mazeListDataBase.CreateTableForListOfMazesIfNotExists();
+		var newMazeLevel = new MazeLevel(fullFileName, invertToUseBlackLines);
+		mazeListDataBase.AddMaze(newMazeLevel);
+    }
 }

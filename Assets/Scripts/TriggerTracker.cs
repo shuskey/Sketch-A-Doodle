@@ -35,7 +35,7 @@ public class TriggerTracker : MonoBehaviour
 
         else if (other.gameObject.CompareTag("RestartTheLevel"))
         {
-            SceneManager.LoadScene("SketchADoodle");
+            SceneManager.LoadScene("Scenes/SketchADoodle");
         }
         else if (other.gameObject.CompareTag("StartFallingRegion"))
         {

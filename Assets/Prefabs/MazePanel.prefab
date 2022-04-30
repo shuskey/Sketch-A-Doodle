@@ -559,8 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dca9770971e3e0478e8363897015781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maze_SO: {fileID: 0}
-  currentLevel_SO: {fileID: 11400000, guid: c37dc41727795b544a455d32209ad1ee, type: 2}
+  currentLevel_DO: {fileID: 11400000, guid: c37dc41727795b544a455d32209ad1ee, type: 2}
   mazeImage: {fileID: 6282166063236415320}
   startPositionMarker: {fileID: 6282166064667948216}
   endPositionMarker: {fileID: 6282166063380504966}

@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d565a5726dcc34846a59955f3c3af72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level_SO: {fileID: 0}
+  level_SO: {fileID: 11400000, guid: c37dc41727795b544a455d32209ad1ee, type: 2}
   titleInput: {fileID: 4801877601510835691}
   creatorInput: {fileID: 106333472771114374}
   fileName: {fileID: 8464434168998626659}
