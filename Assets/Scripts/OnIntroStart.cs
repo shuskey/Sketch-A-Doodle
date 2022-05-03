@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class OnIntroStart : MonoBehaviour
 {
-
-    private void Awake()
-    {
-        MazeDataBase.fileName = "maze.db";
-    }
-
     // Start is called before the first frame update
     void Start()
     {

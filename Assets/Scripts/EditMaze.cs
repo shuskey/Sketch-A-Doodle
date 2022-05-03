@@ -30,7 +30,7 @@ public class EditMaze : MonoBehaviour
     void Start()
     {
         mazeLevel = level_SO.CurrentMazeLevel_DO;
-
+        MazePlayMode.currentMazeLevel = mazeLevel;
         titleInput.text = mazeLevel.title;
         creatorInput.text = mazeLevel.creator;
         fileName.text = $"Filename: {mazeLevel.mazeTextureFileName}";

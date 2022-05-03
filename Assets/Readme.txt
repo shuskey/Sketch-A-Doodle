@@ -1,13 +1,13 @@
 Sketch A Doodle Readme
 To Add/Fix:
 --- WHILE PLAYING SCREENS (2D & 3D)
-Allow Player chooser changes
-Display Personal Best on screen "now playing 2D/3D screen" while playing
-When Goal Achieved and timer stops, evaluate: (New Scene/screen ??)
- - Is this a personal best for the current player
-      No, Great Time, but not a personal best (let user change current player for a different evaluation)
-	  Yes, Excellent, New Personal Speed Record!  This puts you in 10th place (or what ever)
- - Button choices [Try Again (goes to playmode chooser screen)] [Home/Back/(back to play this maze)]  <If new personal record, then save New High Score>
+[X] Allow Player chooser changes
+[X] Display Personal Best on screen "now playing 2D/3D screen" while playing
+[X] When Goal Achieved and timer stops, evaluate: (New Scene/screen ??)
+[X] - Is this a personal best for the current player
+[X]      No, Great Time, but not a personal best (let user change current player for a different evaluation)
+[X]	  Yes, Excellent, New Personal Speed Record!  This puts you in 10th place (or what ever)
+[X] - Button choices [Try Again (goes to playmode chooser screen)] [Home/Back/(back to play this maze)]  <If new personal record, then save New High Score>
  
 --- PLAY YOUR MAZE CHOOSER SCREEN
 This screen loads slowly - how to fix this? Smaller images ??
@@ -30,8 +30,9 @@ Title and Creator edit fields should be labeled on Edit Screen
 Edit screen can re-initialize high scores - Add Clear all HighScores ability.
 Add brightness/contrast settings to WebCam capture screen
 
-[ ] Worse in 2D mode - when falling diable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
+[ ] Worse in 2D mode - when falling disable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
 [ ] Snap picture screen should go right to 'edit' screen after 'Snap'
+[ ] Create a Tool bar tool (like the Height Map or Scriptable Objects creator) that creates the Sqlite entry for a new texture/sprte
 
 [ ] Add Player Chooser to Snap picture screen
 [ ] Options for Wall Type: See through or not, High or Low

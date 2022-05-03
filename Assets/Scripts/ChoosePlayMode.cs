@@ -12,6 +12,8 @@ public class ChoosePlayMode : MonoBehaviour
     [SerializeField] private Image mazeImage;
     [SerializeField] private Text mazeTitle;
 
+    [SerializeField] private GameObject yourNewScorePanel;
+
     [SerializeField] private Button Play2DButton;
     [SerializeField] private Button Play3DButton;
     [SerializeField] private Button CancelButton;
@@ -25,6 +27,7 @@ public class ChoosePlayMode : MonoBehaviour
         var mazeLevel = level_SO.CurrentMazeLevel_DO;
 
         mazeTitle.text = $"Title: {mazeLevel.title}, Creator: {mazeLevel.creator}";
+        MazePlayMode.currentMazeLevel = mazeLevel;
 
         var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
         Texture2D textureFromFile = new Texture2D(2, 2);
@@ -40,19 +43,20 @@ public class ChoosePlayMode : MonoBehaviour
     void Play2DOnClick()
     {
         MazePlayMode.mazePlayMode = EnumMazePlayMode.PlayMode2D;
-           
+        MazePlayMode.currentPlayerNewScore = null;
         SceneManager.LoadScene("Scenes/SketchADoodle");
     }
 
     void Play3DOnClick()
     {
         MazePlayMode.mazePlayMode = EnumMazePlayMode.PlayMode3D;
-
+        MazePlayMode.currentPlayerNewScore = null;
         SceneManager.LoadScene("Scenes/SketchADoodle");
     }
 
     void CancelOnClick()
     {
+        MazePlayMode.currentPlayerNewScore = null;
         SceneManager.LoadScene("Scenes/Intro");
     }
 }

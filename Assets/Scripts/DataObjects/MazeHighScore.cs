@@ -20,7 +20,7 @@ namespace Assets.Scripts.DataObjects
         [UnityEngine.Header("Time in seconds")] 
         public int timeInOneHundredsOfSeconds;
 
-        public MazeHighScore(int id, int mazeId, EnumMazePlayMode mazePlayMode, string playerName, System.DateTime dateAwarded, int scoreAwarded, int timeInOneHundredsOfSeconds)
+        public MazeHighScore(int mazeId, EnumMazePlayMode mazePlayMode, string playerName, System.DateTime dateAwarded, int scoreAwarded, int timeInOneHundredsOfSeconds, int id = 0)
         {
             this.id = id;
             this.mazeId = mazeId;

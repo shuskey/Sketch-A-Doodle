@@ -7,11 +7,12 @@ using System;
 public class Timer : MonoBehaviour
 {
 
-    public TMP_Text elapsedTimerText;
-    public TMP_Text countDownTimerText;
+    [SerializeField] private TMP_Text elapsedTimerText;
+    [SerializeField] private TMP_Text countDownTimerText;
 
     private bool elapsedTimerRunning = false;
     private float unscaledTime;
+    private float currentElapsedTimerValue;
     private int countDownStartTime;
     private bool countDownTimerRunning = true;
     private GameObject startPanel;
@@ -33,6 +34,11 @@ public class Timer : MonoBehaviour
      public void StopTimer()
     {
         elapsedTimerRunning = false;
+    }
+
+    public float GetElapsedTime()
+    {
+        return currentElapsedTimerValue;
     }
 
     // Update is called once per frame
@@ -61,6 +67,7 @@ public class Timer : MonoBehaviour
         else if (elapsedTimerRunning)
         {
             deltaTime += Time.deltaTime;
+            currentElapsedTimerValue = deltaTime;
             elapsedTimerText.text = "Time: " + TimeSpan.FromSeconds(deltaTime).ToString("mm':'ss'.'ff");
         }        
     }

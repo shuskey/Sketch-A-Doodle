@@ -1,3 +1,4 @@
+using Assets.Scripts.DataObjects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,9 +30,25 @@ public class TriggerTracker : MonoBehaviour
         {
             BackGroundManager.bgInstance.Audio.Stop();
             SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.Cherry);
-            timerScript.StopTimer();
+            timerScript.StopTimer();            
             Destroy(other.gameObject);
-        } 
+
+            int elapsedTimeInHundreths = (int)(timerScript.GetElapsedTime() * 100);
+            /*
+             *  - Is this a personal best for the current player
+                  No, Great Time, but not a personal best (let user change current player for a different evaluation)
+	              Yes, Excellent, New Personal Speed Record!  This puts you in 10th place (or what ever)
+                      - Button choices [Try Again (goes to playmode chooser screen)] [Home/Back/(back to play this maze)]  <If new personal record, then save New High Score>
+             */
+            MazePlayMode.currentPlayerNewScore = new MazeHighScore(
+                MazePlayMode.currentMazeLevel.mazeId,
+                MazePlayMode.mazePlayMode,
+                MazePlayMode.currentPlayer,
+                System.DateTime.Now.Date,
+                scoreAwarded: 0,
+                elapsedTimeInHundreths);
+            SceneManager.LoadScene("Scenes/ChoosePlayMode");
+        }
 
         else if (other.gameObject.CompareTag("RestartTheLevel"))
         {

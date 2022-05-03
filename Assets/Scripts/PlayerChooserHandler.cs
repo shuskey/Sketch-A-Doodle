@@ -9,6 +9,12 @@ public class PlayerChooserHandler : MonoBehaviour
 {
     [SerializeField] private InputField newPlyerInputField;
     [SerializeField] private Button addPlayerButton;
+    [SerializeField] private string mazeDataBaseFileName;
+
+    private void Awake()
+    {
+        MazeDataBase.fileName = mazeDataBaseFileName;
+    }
 
     void Start()
     {
@@ -19,12 +25,19 @@ public class PlayerChooserHandler : MonoBehaviour
         listOfPlayersFromDataBase.CreateTableForListOfPlayersIfNotExists();
         listOfPlayersFromDataBase.GetListOfPlayersFromDataBase();
         var players = listOfPlayersFromDataBase.players;
+        var indexOfCurrentPlayer = 0;
+        var i = 0;
         foreach (var player in players)
         {
             dropdown.options.Add(new Dropdown.OptionData() { text = player });
+            if (player == MazePlayMode.currentPlayer)
+            {
+                indexOfCurrentPlayer = i;
+            }
+            i++;
         }
-        dropdown.value = 1;
-        dropdown.value = 0;  // must toggle to get a visual refresh
+        dropdown.value = indexOfCurrentPlayer + 1;
+        dropdown.value = indexOfCurrentPlayer;  // must toggle to get a visual refresh
         PlayerSelected(dropdown);
         dropdown.onValueChanged.AddListener(delegate { PlayerSelected(dropdown); });
         addPlayerButton.onClick.AddListener(delegate { AddPlayerButtonClicked(dropdown); });
