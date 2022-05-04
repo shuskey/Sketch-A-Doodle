@@ -47,6 +47,7 @@ namespace Assets.Scripts.DataProviders
 
         public void GetListOfHighScoresFromDataBase(int mazeId, EnumMazePlayMode mazePlayMode, string optionalPlayerName = null)
         {
+            highScores.Clear();
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();

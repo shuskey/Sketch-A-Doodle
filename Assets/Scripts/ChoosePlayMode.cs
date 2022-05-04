@@ -1,4 +1,6 @@
+using Assets.Scripts.DataProviders;
 using Assets.Scripts.Enums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +13,11 @@ public class ChoosePlayMode : MonoBehaviour
     [SerializeField] private CurrentMazeLevel_ScriptableObject level_SO;
     [SerializeField] private Image mazeImage;
     [SerializeField] private Text mazeTitle;
+
+    [SerializeField] private List<Text> place_2D_text_list = new List<Text>();
+    [SerializeField] private List<Text> place_3D_text_list = new List<Text>();
+
+
 
     [SerializeField] private GameObject yourNewScorePanel;
 
@@ -35,9 +42,42 @@ public class ChoosePlayMode : MonoBehaviour
         textureFromFile.name = mazeLevel.mazeTextureFileName;
         mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
 
+        ListTopScores(EnumMazePlayMode.PlayMode2D);
+        ListTopScores(EnumMazePlayMode.PlayMode3D);
+
+
         Play2DButton.onClick.AddListener(Play2DOnClick);
         Play3DButton.onClick.AddListener(Play3DOnClick);
         CancelButton.onClick.AddListener(CancelOnClick);
+    }
+
+    void ListTopScores(EnumMazePlayMode mazePlayMode)
+    {
+        var placeSting = new string[] {  "1st", "2nd", "3rd", "4th", "5th"  };
+        var listOfTopScores = new ListOfHighScoresFromDataBase();
+        listOfTopScores.GetListOfHighScoresFromDataBase(MazePlayMode.currentMazeLevel.mazeId, mazePlayMode);
+        for (int i=0; i<5; i++)
+        {
+            var thisLinesValue = $"{placeSting[i]} ";
+            if (listOfTopScores.highScores.Count <= i)
+            {
+                thisLinesValue += "--:--.-- xxxxx XXXXX";
+            } 
+            else 
+            {
+                thisLinesValue += (string)TimeSpan.FromSeconds((float)listOfTopScores.highScores[i].timeInOneHundredsOfSeconds / 100.0f).ToString("mm':'ss'.'ff") + " ";
+                thisLinesValue += listOfTopScores.highScores[i].scoreAwarded.ToString("D5") + " ";
+                thisLinesValue += listOfTopScores.highScores[i].playerName.Substring(0, 5);
+            }
+            if (mazePlayMode == EnumMazePlayMode.PlayMode2D)
+            {
+                place_2D_text_list[i].text = thisLinesValue;
+            }
+            else
+            {
+                place_3D_text_list[i].text = thisLinesValue;
+            }
+        }
     }
 
     void Play2DOnClick()

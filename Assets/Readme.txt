@@ -1,13 +1,5 @@
 Sketch A Doodle Readme
 To Add/Fix:
---- WHILE PLAYING SCREENS (2D & 3D)
-[X] Allow Player chooser changes
-[X] Display Personal Best on screen "now playing 2D/3D screen" while playing
-[X] When Goal Achieved and timer stops, evaluate: (New Scene/screen ??)
-[X] - Is this a personal best for the current player
-[X]      No, Great Time, but not a personal best (let user change current player for a different evaluation)
-[X]	  Yes, Excellent, New Personal Speed Record!  This puts you in 10th place (or what ever)
-[X] - Button choices [Try Again (goes to playmode chooser screen)] [Home/Back/(back to play this maze)]  <If new personal record, then save New High Score>
  
 --- PLAY YOUR MAZE CHOOSER SCREEN
 This screen loads slowly - how to fix this? Smaller images ??
@@ -16,11 +8,9 @@ Fix layout of "Play Your Maze" scrolling area so that all titles show (bottom on
 Move Edit button to "Choose your play mode" screen
 
 --- CHOOSE YOUR PLAY MODE 2D 3D SCREEN
-High Scores should be listed on the "play 2D or 3D" screen
-  Display Top 5 scores/player name for 2D, Top 5 for 3D
 Move Edit button from Play your Maze to "play 2D or 3D" (Or integrated 'edit funtions' into this "play 2D or 3D" screen)
-Add PlayerChooser to "play 2D or 3D" screen
 Display Starting and ending Sprites (green dot, cherry)
+[ ] New High Scores need a refresh of the table on this page
 
 --- EDIT SCREEN
 FileName not shown on Edit Screen
@@ -42,6 +32,20 @@ Add brightness/contrast settings to WebCam capture screen
 [ ] Can this run as a Web App
 
 -- COMPLETE --
+--- WHILE PLAYING SCREENS (2D & 3D)
+[X] Allow Player chooser changes
+[X] Display Personal Best on screen "now playing 2D/3D screen" while playing
+[X] When Goal Achieved and timer stops, evaluate: (New Scene/screen ??)
+[X] - Is this a personal best for the current player
+[X]      No, Great Time, but not a personal best (let user change current player for a different evaluation)
+[X]	  Yes, Excellent, New Personal Speed Record!  This puts you in 10th place (or what ever)
+[X] - Button choices [Try Again (goes to playmode chooser screen)] [Home/Back/(back to play this maze)]  <If new personal record, then save New High Score>
+
+-- CHOOSE YOUR PLAY MODE 2D 3D SCREEN
+[X] High Scores should be listed on the "play 2D or 3D" screen
+[X]   Display Top 5 scores/player name for 2D, Top 5 for 3D
+[X] Add PlayerChooser to "play 2D or 3D" screen
+
 [X] FIX: Initial Player position is (0,0) - falling usually fixes this
 [X] convert Maze scriptable objects into serialized data save/load.
 [X] Add SQLite

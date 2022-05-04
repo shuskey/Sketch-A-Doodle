@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 6282166064892044422}
   - component: {fileID: 6282166064892044423}
   - component: {fileID: 5301995736906581894}
+  - component: {fileID: 8036324400840440499}
   m_Layer: 5
   m_Name: MazePanel
   m_TagString: Untagged
@@ -578,6 +579,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 200, y: 200, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8036324400840440499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282166064892044421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 200
+  m_PreferredHeight: 200
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &6357972945231324342
 GameObject:
   m_ObjectHideFlags: 0

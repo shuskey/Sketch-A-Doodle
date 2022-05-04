@@ -27,7 +27,7 @@ public class YourNewScoreScript : MonoBehaviour
     {
         newHighScorePanel.SetActive(true);
 
-        var displayText = $"Your time was {TimeToString(MazePlayMode.currentPlayerNewScore.timeInOneHundredsOfSeconds)} for {PlayModeToString()}.  ";
+        var displayText = $"{MazePlayMode.currentPlayer}, your time was {TimeToString(MazePlayMode.currentPlayerNewScore.timeInOneHundredsOfSeconds)} for {PlayModeToString()}.  ";
         // Check for personal best
         var listOfHighScores = new ListOfHighScoresFromDataBase();
         listOfHighScores.GetListOfHighScoresFromDataBase(MazePlayMode.currentMazeLevel.mazeId, MazePlayMode.mazePlayMode, MazePlayMode.currentPlayer);

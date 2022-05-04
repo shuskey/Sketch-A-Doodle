@@ -24,7 +24,7 @@ public class HeightMapFromMazeLevel : MonoBehaviour
     [SerializeField] private GameObject pointerSphere;
 
     private readonly Rect fullScreenViewportRect = new Rect(0, 0, 1, 1);
-    private readonly Rect minimapViewportRect = new Rect(0.7f, 0.6f, 0.3f, 0.4f);
+    private readonly Rect minimapViewportRect = new Rect(0.7f, 0.0f, 0.3f, 0.4f);
 
     // Start is called before the first frame update
     void Start()
