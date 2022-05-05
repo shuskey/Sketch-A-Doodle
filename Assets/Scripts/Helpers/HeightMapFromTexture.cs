@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 public static class HeightmapFromTexture
 {
+#if NOTNOW
     [MenuItem("Terrain/Heightmap From Black Lined Texture")]
     static void ApplyHeightmapBlackLines()
     {
@@ -141,4 +142,5 @@ public static class HeightmapFromTexture
         var floorLimit = (floorAverageGray + 0.1f) * 2.0f;
         return (rounded <= floorLimit) ? 0f : rounded;
     }
+#endif
 }

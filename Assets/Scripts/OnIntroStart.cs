@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class OnIntroStart : MonoBehaviour
 {
+    void Awake()
+    {
+        if (string.IsNullOrEmpty(MazePlayMode.currentPlayer))
+            MazePlayMode.currentPlayer = "Guest";
+    }
+
     // Start is called before the first frame update
     void Start()
     {

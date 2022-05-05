@@ -86,6 +86,26 @@ namespace Assets.Scripts.DataProviders
             }
         }
 
+        public void RemoveMaze(MazeLevel mazeLevel)
+        {
+            using (SqliteConnection sqlconn = new SqliteConnection())
+            {
+                sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
+                sqlconn.Open();
+                using (SqliteCommand command = new SqliteCommand())
+                {
+                    command.Connection = sqlconn;
+                    command.CommandText =
+                        "DELETE FROM mazeLevels " +
+                        "WHERE id = :mazeId;";                        
+                    command.Parameters.Add("mazeId", DbType.String).Value = mazeLevel.mazeId;                    
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
         public void AddMaze(MazeLevel newMazeLevel)
         {
             using (SqliteConnection sqlconn = new SqliteConnection())

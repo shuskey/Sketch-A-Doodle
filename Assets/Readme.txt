@@ -1,41 +1,32 @@
 Sketch A Doodle Readme
-To Add/Fix:
+To Add/Fix: 
+-->[ ] Git rid of Scriptable object for current maze level.
+-->[ ] This screen loads slowly - how to fix this? Smaller images ?? (lazy load only a page at a time ?
 
-[ ] Create a Tool bar tool (like the Height Map or Scriptable Objects creator) that creates the Sqlite entry for a new texture/sprte - THis is how you get new mazes from another file 
- 
---- INTRO
-[ ] This screen loads slowly - how to fix this? Smaller images ?? (lazy load only a page at a time ?
-[ ] On "Play Your Maze" screen use title of maze not file name
-[ ] Fix layout of "Play Your Maze" scrolling area so that all titles show (bottom ones not showing)
-
---- CHOOSE YOUR PLAY MODE 2D 3D SCREEN
-[ ] Add an Edit button to "play 2D or 3D" 
-[ ] Display Starting and ending Sprites (green dot, cherry)
-
---- WHILE PLAYING SCREENS (2D & 3D)
-[ ] Options for Wall Type: See through or not, High or Low (3D only)
+[ ] ON played Chooser, can 'enter' do the same as the + button ?
+[ ] Add a Remove Player (will also remove all highscores for this player) - perhaps only on Edit screen ?
 [ ] When Goal Achieve stop/pause animations/sound etc.
 [ ] Worse in 2D mode - when falling disable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
+[ ] Options for Wall Type: See through or not, High or Low (3D only)
 
---- EDIT SCREEN
-[ ] FileName not shown on Edit Screen
 [ ] Add toggle for InvertforBlack lines to edit screen.
-[ ] Add a "Delete Maze" ability somewhere that would be protected from button mashing monkey users
-[ ] Title and Creator edit fields should be labeled on Edit Screen
-[ ] Edit screen can re-initialize high scores - Add Clear all HighScores ability.
 [ ] Add brightness/contrast settings to WebCam capture screen
+[ ] Add rotate clockwise 90 degrees to image
+[ ] Add crop and/or additional borders to maze - eliminate the 'sneak around'
 
---- SNAP PICTURE
-[ ] Snap picture screen should go right to 'edit' screen after 'Snap'
-[ ] Snap screen - is a filename required?
-[ ] Add Player Chooser to Snap picture screen
-
---- OTHER
 [ ] Can I get rid of UnityEditor functions, so this runs outside the editor
 [ ] Can a maze be added by giving it a URL to an online image
 [ ] Can this run as a Web App
 
 -- COMPLETE --
+[X] Guest looses its default spot when it is no longer alphabetically lower than another name
+[X] Snap picture screen should go right to 'edit' screen after 'Snap'
+[X] Edit screen can re-initialize high scores - Add Clear all HighScores ability.
+[X] Add a "Delete Maze" ability somewhere that would be protected from button mashing monkey users
+[X] perhaps add a save/play button to the edit screen
+[X] Create a Tool bar tool (like the Height Map or Scriptable Objects creator) that creates the Sqlite entry for a new texture/sprte - THis is how you get new mazes from another file 
+[X] Add Player Chooser to Snap picture screen
+[X] Looks like FULL PAth is being used to save : C:/Users/Scott/Documents/GitHub/Sketch A Doodle/Assets/Mazes/Maze-30April-07-10-16.png - This should just be Assets/Mazes/Maze-30April-07-10-16.png
 [X] New High Scores need a refresh of the table on this page
 [X] Allow Player chooser changes
 [X] Display Personal Best on screen "now playing 2D/3D screen" while playing

@@ -7,14 +7,10 @@ using Assets.Scripts.Enums;
 
 public class HeightMapFromMazeLevel : MonoBehaviour
 {
-    [SerializeField]
-    private CurrentMazeLevel_ScriptableObject currentMazeLevel;
-    [SerializeField]
-    private GameObject startingPlatform_GameObject;
-    [SerializeField]
-    private GameObject endingGoal_GameObject;
-    [SerializeField]
-    private TMP_Text mazeCreditsText;
+    [SerializeField] private CurrentMazeLevel_ScriptableObject currentMazeLevel;
+    [SerializeField] private GameObject startingPlatform_GameObject;
+    [SerializeField] private GameObject endingGoal_GameObject;
+
 
     [SerializeField] private GameObject miniMapCamera;
     [SerializeField] private GameObject mapToggleButton;
@@ -39,9 +35,7 @@ public class HeightMapFromMazeLevel : MonoBehaviour
         startingPlatform_GameObject.transform.localPosition = new Vector3(
             currentMazeLevel.CurrentMazeLevel_DO.startPositionRatio.x * 100f,
             .15f,
-            currentMazeLevel.CurrentMazeLevel_DO.startPositionRatio.y * 100f);
-
-        mazeCreditsText.text = $"Title: {currentMazeLevel.CurrentMazeLevel_DO.title}, Creator: {currentMazeLevel.CurrentMazeLevel_DO.creator}";
+            currentMazeLevel.CurrentMazeLevel_DO.startPositionRatio.y * 100f);        
 
         SetPlayMode();  // 2D or 3D
     }
@@ -76,7 +70,6 @@ public class HeightMapFromMazeLevel : MonoBehaviour
                 break;            
         }
     }
-
 
     static void ApplyHeightmap(CurrentMazeLevel_ScriptableObject currentMazeLevel, bool invertToUseBlackLines = false)
     {

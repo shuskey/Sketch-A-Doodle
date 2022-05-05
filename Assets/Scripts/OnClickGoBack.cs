@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class OnClickGoHome : MonoBehaviour, IPointerClickHandler
+public class OnClickGoBack : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField] private string sceneToGoBackTo = "Scenes/ChoosePlayMode";
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        SceneManager.LoadScene("Scenes/ChoosePlayMode");
+        SceneManager.LoadScene(sceneToGoBackTo);
     }
 }

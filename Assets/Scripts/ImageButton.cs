@@ -6,6 +6,6 @@ public class ImageButton : MonoBehaviour
 {
     void OnMouseDown()
     {
-        Debug.Log("BUTTON PRESSED");
+
     }
 }

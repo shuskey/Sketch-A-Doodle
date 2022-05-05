@@ -15,6 +15,8 @@ public class CaptureSquareScreenShot : MonoBehaviour
 	[SerializeField] private Camera captureCamera;
 	[SerializeField] private RenderTexture renderTexture;
 	[SerializeField] private Text filenameText;
+	[SerializeField] private CurrentMazeLevel_ScriptableObject currentLevel_DO;
+
 
 	public void GrabSquare()
 	{		
@@ -22,7 +24,7 @@ public class CaptureSquareScreenShot : MonoBehaviour
 		var devices = WebCamTexture.devices;
 		WebCamTexture webcamTexture = new WebCamTexture(devices[0].name, 1920, 1000);		
 		webcamTexture.Stop();
-		SceneManager.LoadScene("Scenes/Intro");
+		SceneManager.LoadScene("Scenes/EditMazeLevel");
 	}
 
 	IEnumerator GrabSquareCoroutine()
@@ -42,13 +44,13 @@ public class CaptureSquareScreenShot : MonoBehaviour
 		// Encode texture into PNG
 		byte[] bytes = virtualPhoto.EncodeToPNG();
 		UnityEngine.Object.Destroy(virtualPhoto);
-		var filename = string.IsNullOrEmpty(filenameText.text) ? "Maze-" + System.DateTime.Now.ToString("ddMMMM-HH-mm-ss") : filenameText.text;
+		var filename = "Maze-" + System.DateTime.Now.ToString("ddMMMM-HH-mm-ss");
 		var invalids = System.IO.Path.GetInvalidFileNameChars();
 		var newName = System.String.Join("_", filename.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
 		var completeFileName = Application.dataPath + $"/Mazes/{newName}.png";
 		File.WriteAllBytes(completeFileName, bytes);
-
-		CreateMazeLevelInDataBase(newName, completeFileName, invertToUseBlackLines: true);
+		var relativePathAndFileName = $"Assets/Mazes/{newName}.png";
+		CreateMazeLevelInDataBase(newName, relativePathAndFileName, invertToUseBlackLines: true);
 	}
 
 	void CreateMazeLevelInDataBase(string name, string fullFileName, bool invertToUseBlackLines)
@@ -58,5 +60,8 @@ public class CaptureSquareScreenShot : MonoBehaviour
 		mazeListDataBase.CreateTableForListOfMazesIfNotExists();
 		var newMazeLevel = new MazeLevel(fullFileName, invertToUseBlackLines);
 		mazeListDataBase.AddMaze(newMazeLevel);
-    }
+
+		MazePlayMode.currentMazeLevel = newMazeLevel;
+		currentLevel_DO.CurrentMazeLevel_DO = newMazeLevel;
+	}
 }

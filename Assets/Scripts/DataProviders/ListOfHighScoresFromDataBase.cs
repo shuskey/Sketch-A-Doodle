@@ -111,6 +111,25 @@ namespace Assets.Scripts.DataProviders
             }
         }
 
+        public void RemoveHighScoresForThisMaze(MazeLevel mazeLevel)
+        {
+            using (SqliteConnection sqlconn = new SqliteConnection())
+            {
+                sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
+                sqlconn.Open();
+                using (SqliteCommand command = new SqliteCommand())
+                {
+                    command.Connection = sqlconn;
+                    command.CommandText =
+                        "DELETE FROM highScores " +
+                        "WHERE mazeLevelId = :mazeId ;";
+                    command.Parameters.Add("mazeId", DbType.String).Value = mazeLevel.mazeId;
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public void UpdateHighScore(int highScoreId, MazeHighScore newHighScore)
         {
             using (SqliteConnection sqlconn = new SqliteConnection())

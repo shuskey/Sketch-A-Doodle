@@ -33,7 +33,7 @@ public class ChoosePlayMode : MonoBehaviour
 
         var mazeLevel = level_SO.CurrentMazeLevel_DO;
 
-        mazeTitle.text = $"Title: {mazeLevel.title}, Creator: {mazeLevel.creator}";
+        mazeTitle.text = $"Title: {mazeLevel.title}\nBy: {mazeLevel.creator}";
         MazePlayMode.currentMazeLevel = mazeLevel;
 
         var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);

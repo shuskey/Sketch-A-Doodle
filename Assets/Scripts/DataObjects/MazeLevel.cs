@@ -26,7 +26,7 @@ namespace Assets.Scripts.DataObjects
         public MazeLevel(string mazeTextureFileName, bool invertToUseBlackLines) 
         {
             this.mazeId = 0;
-            this.title = null;
+            this.title = "";
             this.creator = MazePlayMode.currentPlayer;
             this.mazeTextureFileName = mazeTextureFileName;
             this.invertToUseBlackLines = invertToUseBlackLines;

@@ -19,7 +19,6 @@ public class MazeDisplay : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject startPositionMarker;
     [SerializeField] private GameObject endPositionMarker;
     [SerializeField] private Button editButton;
-    [SerializeField] private Text fileName;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +36,6 @@ public class MazeDisplay : MonoBehaviour, IPointerClickHandler
         endPositionMarker.GetComponent<RectTransform>().anchoredPosition =
             new Vector2(maze_DO.endPositionRatio.x * panelWidth, maze_DO.endPositionRatio.y * panelHeight);
         editButton.onClick.AddListener(EditOnClick);
-        fileName.text = maze_DO.mazeTextureFileName;
     }
 
     public void Initialize(MazeLevel maze_DO_toUse)

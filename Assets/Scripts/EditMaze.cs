@@ -14,13 +14,12 @@ public class EditMaze : MonoBehaviour
     [SerializeField] private CurrentMazeLevel_ScriptableObject level_SO;
     [SerializeField] private InputField titleInput;
     [SerializeField] private InputField creatorInput;
-    [SerializeField] private Text fileName;
     [SerializeField] private Image mazeImage;
     [SerializeField] private GameObject startPositionMarker;
     [SerializeField] private GameObject endPositionMarker;
 
     [SerializeField] private Button SaveButton;
-    [SerializeField] private Button CancelButton;
+    [SerializeField] private Button PlayButton;
 
     private MazeLevel mazeLevel;
     private float panelWidth;
@@ -33,7 +32,6 @@ public class EditMaze : MonoBehaviour
         MazePlayMode.currentMazeLevel = mazeLevel;
         titleInput.text = mazeLevel.title;
         creatorInput.text = mazeLevel.creator;
-        fileName.text = $"Filename: {mazeLevel.mazeTextureFileName}";
         var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
         Texture2D textureFromFile = new Texture2D(2, 2);
         textureFromFile.LoadImage(imageAssetBytes);
@@ -46,13 +44,23 @@ public class EditMaze : MonoBehaviour
         endPositionMarker.GetComponent<RectTransform>().anchoredPosition =
             new Vector2(mazeLevel.endPositionRatio.x * panelWidth, mazeLevel.endPositionRatio.y * panelHeight);
         SaveButton.onClick.AddListener(SaveOnClick);
-        CancelButton.onClick.AddListener(CancelOnClick);
+        PlayButton.onClick.AddListener(PlayOnClick);
+    }
+
+    void PlayOnClick()
+    {
+        SaveMaze();
+        SceneManager.LoadScene("Scenes/ChoosePlayMode");
     }
 
     void SaveOnClick()
     {
-        Debug.Log("You have clicked the SAVE button!");
+        SaveMaze();     
+        SceneManager.LoadScene("Scenes/Intro");
+    }
 
+    void SaveMaze()
+    {
         mazeLevel.title = titleInput.text;
         mazeLevel.creator = creatorInput.text;
         mazeLevel.startPositionRatio.x = startPositionMarker.GetComponent<RectTransform>().anchoredPosition.x / panelWidth;
@@ -62,12 +70,6 @@ public class EditMaze : MonoBehaviour
 
         var listOfMazesFromDataBase = new ListOfMazesFromDataBase();
         listOfMazesFromDataBase.UpdateMaze(mazeLevel.mazeId, mazeLevel);
-        SceneManager.LoadScene("Scenes/Intro");
     }
 
-    void CancelOnClick()
-    {
-        Debug.Log("You have clicked the CANCEL button!");
-        SceneManager.LoadScene("Scenes/Intro");
-    }
 }

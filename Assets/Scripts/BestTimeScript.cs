@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BestTimeScript : MonoBehaviour
 {
@@ -24,11 +25,11 @@ public class BestTimeScript : MonoBehaviour
 
             var bestTime = (float)MazePlayMode.currentPlayerHighScore.timeInOneHundredsOfSeconds / 100.0f;
 
-            gameObject.GetComponent<TMP_Text>().text = "Best: " + TimeSpan.FromSeconds(bestTime).ToString("mm':'ss'.'ff");
+            gameObject.GetComponent<Text>().text = "Best: " + TimeSpan.FromSeconds(bestTime).ToString("mm':'ss'.'ff");
         }
         else
         {
-            gameObject.GetComponent<TMP_Text>().text = "Best: --:--.--";
+            gameObject.GetComponent<Text>().text = "Best: --:--.--";
         }
         
     }

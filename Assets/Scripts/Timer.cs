@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
 public class Timer : MonoBehaviour
 {
 
-    [SerializeField] private TMP_Text elapsedTimerText;
+    [SerializeField] private Text elapsedTimerText;
     [SerializeField] private TMP_Text countDownTimerText;
 
     private bool elapsedTimerRunning = false;
