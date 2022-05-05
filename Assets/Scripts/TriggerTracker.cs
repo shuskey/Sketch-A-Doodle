@@ -6,12 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class TriggerTracker : MonoBehaviour
 {
+    [SerializeField] private GameObject yourNewScoreObject;
+
     Timer timerScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        timerScript = gameObject.GetComponent<Timer>();   
+        timerScript = gameObject.GetComponent<Timer>();
+        yourNewScoreObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,7 +50,11 @@ public class TriggerTracker : MonoBehaviour
                 System.DateTime.Now.Date,
                 scoreAwarded: 0,
                 elapsedTimeInHundreths);
-            SceneManager.LoadScene("Scenes/ChoosePlayMode");
+
+            var yourNewScoreScript = yourNewScoreObject.GetComponent<YourNewScoreScript>();
+
+            yourNewScoreScript.GoalAchieved();
+            yourNewScoreObject.SetActive(true);
         }
 
         else if (other.gameObject.CompareTag("RestartTheLevel"))

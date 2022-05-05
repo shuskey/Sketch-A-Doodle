@@ -3,30 +3,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class YourNewScoreScript : MonoBehaviour
 {    
     [SerializeField] private Text yourNewScoreText;
-    [SerializeField] private GameObject newHighScorePanel;
+    [SerializeField] private Button okayButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (MazePlayMode.currentPlayerNewScore != null)
-        {
-            GoalAchieved();
-        }
-        else
-        {
-            newHighScorePanel.SetActive(false);
-        }
+
+        okayButton.onClick.AddListener(OnOkayClick);
+    }
+    public void OnOkayClick()
+    {
+        SceneManager.LoadScene("Scenes/ChoosePlayMode");
     }
 
-    void GoalAchieved()
+    public void GoalAchieved()
     {
-        newHighScorePanel.SetActive(true);
-
         var displayText = $"{MazePlayMode.currentPlayer}, your time was {TimeToString(MazePlayMode.currentPlayerNewScore.timeInOneHundredsOfSeconds)} for {PlayModeToString()}.  ";
         // Check for personal best
         var listOfHighScores = new ListOfHighScoresFromDataBase();

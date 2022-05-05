@@ -1,38 +1,42 @@
 Sketch A Doodle Readme
 To Add/Fix:
+
+[ ] Create a Tool bar tool (like the Height Map or Scriptable Objects creator) that creates the Sqlite entry for a new texture/sprte - THis is how you get new mazes from another file 
  
---- PLAY YOUR MAZE CHOOSER SCREEN
-This screen loads slowly - how to fix this? Smaller images ??
-On "Play Your Maze" screen use title of maze not file name
-Fix layout of "Play Your Maze" scrolling area so that all titles show (bottom ones not showing)
-Move Edit button to "Choose your play mode" screen
+--- INTRO
+[ ] This screen loads slowly - how to fix this? Smaller images ?? (lazy load only a page at a time ?
+[ ] On "Play Your Maze" screen use title of maze not file name
+[ ] Fix layout of "Play Your Maze" scrolling area so that all titles show (bottom ones not showing)
 
 --- CHOOSE YOUR PLAY MODE 2D 3D SCREEN
-Move Edit button from Play your Maze to "play 2D or 3D" (Or integrated 'edit funtions' into this "play 2D or 3D" screen)
-Display Starting and ending Sprites (green dot, cherry)
-[ ] New High Scores need a refresh of the table on this page
+[ ] Add an Edit button to "play 2D or 3D" 
+[ ] Display Starting and ending Sprites (green dot, cherry)
+
+--- WHILE PLAYING SCREENS (2D & 3D)
+[ ] Options for Wall Type: See through or not, High or Low (3D only)
+[ ] When Goal Achieve stop/pause animations/sound etc.
+[ ] Worse in 2D mode - when falling disable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
 
 --- EDIT SCREEN
-FileName not shown on Edit Screen
-Add toggle for InvertforBlack lines to edit screen.
-Add a "Delete Maze" ability somewhere that would be protected from button mashing monkey users
-Title and Creator edit fields should be labeled on Edit Screen
-Edit screen can re-initialize high scores - Add Clear all HighScores ability.
-Add brightness/contrast settings to WebCam capture screen
+[ ] FileName not shown on Edit Screen
+[ ] Add toggle for InvertforBlack lines to edit screen.
+[ ] Add a "Delete Maze" ability somewhere that would be protected from button mashing monkey users
+[ ] Title and Creator edit fields should be labeled on Edit Screen
+[ ] Edit screen can re-initialize high scores - Add Clear all HighScores ability.
+[ ] Add brightness/contrast settings to WebCam capture screen
 
-[ ] Worse in 2D mode - when falling disable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
+--- SNAP PICTURE
 [ ] Snap picture screen should go right to 'edit' screen after 'Snap'
-[ ] Create a Tool bar tool (like the Height Map or Scriptable Objects creator) that creates the Sqlite entry for a new texture/sprte
-
+[ ] Snap screen - is a filename required?
 [ ] Add Player Chooser to Snap picture screen
-[ ] Options for Wall Type: See through or not, High or Low
-[ ] When Cherry is triggered - remove the parent or turn it into something else - crown, rainbow, gold coin
+
+--- OTHER
 [ ] Can I get rid of UnityEditor functions, so this runs outside the editor
 [ ] Can a maze be added by giving it a URL to an online image
 [ ] Can this run as a Web App
 
 -- COMPLETE --
---- WHILE PLAYING SCREENS (2D & 3D)
+[X] New High Scores need a refresh of the table on this page
 [X] Allow Player chooser changes
 [X] Display Personal Best on screen "now playing 2D/3D screen" while playing
 [X] When Goal Achieved and timer stops, evaluate: (New Scene/screen ??)
