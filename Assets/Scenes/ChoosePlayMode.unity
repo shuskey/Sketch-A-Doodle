@@ -482,7 +482,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POS TIME M:S SCORE NAME
+  m_Text: 'POS TIME M:S SCORE NAME        '
 --- !u!222 &241870349
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POS TIME M:S SCORE NAME
+  m_Text: 'POS TIME M:S SCORE NAME        '
 --- !u!222 &400202447
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3381,7 +3381,6 @@ MonoBehaviour:
   - {fileID: 481567007}
   - {fileID: 2000133202}
   - {fileID: 1231251083}
-  yourNewScorePanel: {fileID: 0}
   Play2DButton: {fileID: 1262221467}
   Play3DButton: {fileID: 1702423675}
   CancelButton: {fileID: 1337898090}

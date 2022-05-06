@@ -56,15 +56,15 @@ public class ChoosePlayMode : MonoBehaviour
             var thisLinesValue = $"{placeSting[i]} ";
             if (listOfTopScores.highScores.Count <= i)
             {
-                thisLinesValue += "--:--.-- xxxxx XXXXX";
+                thisLinesValue += "--:--.-- xxxxx ............";
             } 
             else 
             {
                 thisLinesValue += (string)TimeSpan.FromSeconds((float)listOfTopScores.highScores[i].timeInOneHundredsOfSeconds / 100.0f).ToString("mm':'ss'.'ff") + " ";
                 thisLinesValue += listOfTopScores.highScores[i].scoreAwarded.ToString("D5") + " ";
-                thisLinesValue += listOfTopScores.highScores[i].playerName.Length < 6 ? 
-                    listOfTopScores.highScores[i].playerName : 
-                    listOfTopScores.highScores[i].playerName.Substring(0, 5);
+                thisLinesValue += listOfTopScores.highScores[i].playerName.Length <= 12 ? 
+                    listOfTopScores.highScores[i].playerName.PadRight(12) : 
+                    listOfTopScores.highScores[i].playerName.Substring(0, 12);
             }
             if (mazePlayMode == EnumMazePlayMode.PlayMode2D)
             {
