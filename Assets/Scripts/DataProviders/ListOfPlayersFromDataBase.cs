@@ -82,11 +82,29 @@ namespace Assets.Scripts.DataProviders
                 using (SqliteCommand command = new SqliteCommand())
                 {
                     command.Connection = sqlconn;
-                    command.CommandText = "INSERT INTO players (name) VALUES (:name)";                    
+                    command.CommandText = "INSERT INTO players (name) VALUES (:name) ;";                    
                     command.Parameters.Add("name", DbType.String).Value = name;
                     command.ExecuteNonQuery();
                 }
             }            
+        }
+
+        public void RemovePlayer(string name)
+        {
+            using (SqliteConnection sqlconn = new SqliteConnection())
+            {
+                sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
+
+                sqlconn.Open();
+
+                using (SqliteCommand command = new SqliteCommand())
+                {
+                    command.Connection = sqlconn;
+                    command.CommandText = "DELETE FROM players WHERE name = :playerName ;";
+                    command.Parameters.Add("playerName", DbType.String).Value = name;
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }        
 }

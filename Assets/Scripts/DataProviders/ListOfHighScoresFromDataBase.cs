@@ -130,6 +130,25 @@ namespace Assets.Scripts.DataProviders
             }
         }
 
+        public void RemoveHighScoresForThisPlayer(string name)
+        {
+            using (SqliteConnection sqlconn = new SqliteConnection())
+            {
+                sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
+                sqlconn.Open();
+                using (SqliteCommand command = new SqliteCommand())
+                {
+                    command.Connection = sqlconn;
+                    command.CommandText =
+                        "DELETE FROM highScores " +
+                        "WHERE playerName = :playerName ;";
+                    command.Parameters.Add("playerName", DbType.String).Value = name;
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public void UpdateHighScore(int highScoreId, MazeHighScore newHighScore)
         {
             using (SqliteConnection sqlconn = new SqliteConnection())

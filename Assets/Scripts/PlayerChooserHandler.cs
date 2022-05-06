@@ -9,6 +9,7 @@ public class PlayerChooserHandler : MonoBehaviour
 {
     [SerializeField] private InputField newPlyerInputField;
     [SerializeField] private Button addPlayerButton;
+    [SerializeField] private Button removePlayerButton;
     [SerializeField] private string mazeDataBaseFileName;
 
     private void Awake()
@@ -41,6 +42,7 @@ public class PlayerChooserHandler : MonoBehaviour
         PlayerSelected(dropdown);
         dropdown.onValueChanged.AddListener(delegate { PlayerSelected(dropdown); });
         addPlayerButton.onClick.AddListener(delegate { AddPlayerButtonClicked(dropdown); });
+        removePlayerButton.onClick.AddListener(delegate { RemovePlayerButtonClicked(dropdown); });
     }
 
     void PlayerSelected(Dropdown dropdown)
@@ -65,6 +67,22 @@ public class PlayerChooserHandler : MonoBehaviour
         UpdateDropdownWithSelection(dropdown, newPlayerName.Trim());
     }
 
+    void RemovePlayerButtonClicked(Dropdown dropdown)
+    {
+        var playerNameToBeRemoved = dropdown.options[dropdown.value].text;
+
+        var listOfHighScoresFromDataBase = new ListOfHighScoresFromDataBase();
+        listOfHighScoresFromDataBase.RemoveHighScoresForThisPlayer(playerNameToBeRemoved);
+
+        if (playerNameToBeRemoved == "Guest")
+            return;
+
+        var listOfPlayersFromDataBase = new ListOfPlayersFromDataBase();
+        listOfPlayersFromDataBase.RemovePlayer(playerNameToBeRemoved);
+
+        UpdateDropdownWithSelection(dropdown, "Guest");
+    }
+
     void UpdateDropdownWithSelection(Dropdown dropdown, string nameToSelect)
     {
         dropdown.options.Clear();
@@ -80,10 +98,14 @@ public class PlayerChooserHandler : MonoBehaviour
                 indexOfSelected = i;
 
         }
-        dropdown.value = 0;
+        dropdown.value = -1;  
         dropdown.value = indexOfSelected;  // must toggle to get a visual refresh
         PlayerSelected(dropdown);
     }
 
-    
+    public void OnEnterPressed()
+    {        
+        AddPlayerButtonClicked(transform.GetComponent<Dropdown>());
+    }
+
 }
