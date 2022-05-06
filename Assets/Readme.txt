@@ -1,6 +1,5 @@
 Sketch A Doodle Readme
 To Add/Fix: 
--->[ ] This screen loads slowly - how to fix this? Smaller images ?? (lazy load only a page at a time ?
 
 [ ] ON played Chooser, can 'enter' do the same as the + button ?
 [ ] Add a Remove Player (will also remove all highscores for this player) - perhaps only on Edit screen ?
@@ -18,6 +17,7 @@ To Add/Fix:
 [ ] Can this run as a Web App
 
 -- COMPLETE --
+[X] This screen loads slowly - how to fix this? Smaller images ?? (lazy load only a page at a time ?
 [X] Git rid of Scriptable object for current maze level.
 [X] Guest looses its default spot when it is no longer alphabetically lower than another name
 [X] Snap picture screen should go right to 'edit' screen after 'Snap'

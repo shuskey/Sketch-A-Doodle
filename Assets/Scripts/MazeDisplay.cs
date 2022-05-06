@@ -26,8 +26,10 @@ public class MazeDisplay : MonoBehaviour, IPointerClickHandler
         Texture2D textureFromFile = new Texture2D(2, 2);
         textureFromFile.LoadImage(imageAssetBytes);
         textureFromFile.name = mazeLevel.mazeTextureFileName;
+        TextureScale.Scale(textureFromFile, 200, 200);
+
         mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
-        
+
         var panelWidth = GetComponent<RectTransform>().rect.width;
         var panelHeight = GetComponent<RectTransform>().rect.height;
         startPositionMarker.GetComponent<RectTransform>().anchoredPosition =
