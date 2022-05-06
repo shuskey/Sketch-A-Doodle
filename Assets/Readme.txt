@@ -1,9 +1,5 @@
 Sketch A Doodle Readme
 To Add/Fix: 
-[ ] When Goal Achieve stop/pause animations/sound etc.
-[ ] Worse in 2D mode - when falling disable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
-[ ] Options for Wall Type: See through or not, High or Low (3D only)
-
 [ ] Add toggle for InvertforBlack lines to edit screen.
 [ ] Add brightness/contrast settings to WebCam capture screen
 [ ] Add rotate clockwise 90 degrees to image
@@ -11,9 +7,12 @@ To Add/Fix:
 
 [ ] Can I get rid of UnityEditor functions, so this runs outside the editor
 [ ] Can a maze be added by giving it a URL to an online image
+[ ] Options for Wall Type: See through or not, High or Low (3D only)
 [ ] Can this run as a Web App
 
 -- COMPLETE --
+[X] Worse in 2D mode - when falling disable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
+[X] When Goal Achieve stop/pause animations/sound etc.
 [X] How to limit player name length - 12 Chars
 [X] ON played Chooser, can 'enter' do the same as the + button ?
 [X] Add a Remove Player (will also remove all highscores for this player) - perhaps only on Edit screen ?

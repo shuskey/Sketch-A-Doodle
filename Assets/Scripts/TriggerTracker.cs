@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class TriggerTracker : MonoBehaviour
 {
     [SerializeField] private GameObject yourNewScoreObject;
+    [SerializeField] private GameObject trackingSphereObject;
 
     Timer timerScript;
 
@@ -55,6 +56,8 @@ public class TriggerTracker : MonoBehaviour
 
             yourNewScoreScript.GoalAchieved();
             yourNewScoreObject.SetActive(true);
+
+            gameObject.SetActive(false); // Pause
         }
 
         else if (other.gameObject.CompareTag("RestartTheLevel"))
@@ -63,6 +66,7 @@ public class TriggerTracker : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("StartFallingRegion"))
         {
+            trackingSphereObject.SetActive(false);
             SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.Falling);
         }
     }

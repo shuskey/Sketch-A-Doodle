@@ -20,6 +20,7 @@ public class YourNewScoreScript : MonoBehaviour
     }
     public void OnOkayClick()
     {
+        //Time.timeScale = 1; // resume game
         SceneManager.LoadScene("Scenes/ChoosePlayMode");
     }
 
