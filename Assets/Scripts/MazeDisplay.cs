@@ -12,8 +12,7 @@ using Assets.Scripts.DataProviders;
 
 public class MazeDisplay : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private MazeLevel maze_DO;    
-    [SerializeField] private CurrentMazeLevel_ScriptableObject currentLevel_DO;
+    [SerializeField] private MazeLevel mazeLevel;    
 
     [SerializeField] private Image mazeImage;
     [SerializeField] private GameObject startPositionMarker;
@@ -23,35 +22,35 @@ public class MazeDisplay : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        var imageAssetBytes = File.ReadAllBytes(maze_DO.mazeTextureFileName);
+        var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
         Texture2D textureFromFile = new Texture2D(2, 2);
         textureFromFile.LoadImage(imageAssetBytes);
-        textureFromFile.name = maze_DO.mazeTextureFileName;
+        textureFromFile.name = mazeLevel.mazeTextureFileName;
         mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
         
         var panelWidth = GetComponent<RectTransform>().rect.width;
         var panelHeight = GetComponent<RectTransform>().rect.height;
         startPositionMarker.GetComponent<RectTransform>().anchoredPosition =
-            new Vector2(maze_DO.startPositionRatio.x * panelWidth, maze_DO.startPositionRatio.y * panelHeight);
+            new Vector2(mazeLevel.startPositionRatio.x * panelWidth, mazeLevel.startPositionRatio.y * panelHeight);
         endPositionMarker.GetComponent<RectTransform>().anchoredPosition =
-            new Vector2(maze_DO.endPositionRatio.x * panelWidth, maze_DO.endPositionRatio.y * panelHeight);
+            new Vector2(mazeLevel.endPositionRatio.x * panelWidth, mazeLevel.endPositionRatio.y * panelHeight);
         editButton.onClick.AddListener(EditOnClick);
     }
 
     public void Initialize(MazeLevel maze_DO_toUse)
     {
-        maze_DO = maze_DO_toUse;
+        mazeLevel = maze_DO_toUse;
     }
 
     void EditOnClick()
-    {
-        currentLevel_DO.CurrentMazeLevel_DO = maze_DO;
+    {     
+        MazePlayMode.currentMazeLevel = mazeLevel;
         SceneManager.LoadScene("Scenes/EditMazeLevel");        
     }
 
     public void OnPointerClick(PointerEventData pointerEventData)
-    {
-        currentLevel_DO.CurrentMazeLevel_DO = maze_DO;        
+    {         
+        MazePlayMode.currentMazeLevel = mazeLevel;
         SceneManager.LoadScene("Scenes/ChoosePlayMode");
     }
 }

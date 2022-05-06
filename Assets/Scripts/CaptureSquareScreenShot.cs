@@ -14,9 +14,7 @@ public class CaptureSquareScreenShot : MonoBehaviour
 
 	[SerializeField] private Camera captureCamera;
 	[SerializeField] private RenderTexture renderTexture;
-	[SerializeField] private Text filenameText;
-	[SerializeField] private CurrentMazeLevel_ScriptableObject currentLevel_DO;
-
+	[SerializeField] private Text filenameText;	
 
 	public void GrabSquare()
 	{		
@@ -61,7 +59,6 @@ public class CaptureSquareScreenShot : MonoBehaviour
 		var newMazeLevel = new MazeLevel(fullFileName, invertToUseBlackLines);
 		mazeListDataBase.AddMaze(newMazeLevel);
 
-		MazePlayMode.currentMazeLevel = newMazeLevel;
-		currentLevel_DO.CurrentMazeLevel_DO = newMazeLevel;
+		MazePlayMode.currentMazeLevel = newMazeLevel;		
 	}
 }

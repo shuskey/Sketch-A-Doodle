@@ -10,8 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EditMaze : MonoBehaviour
-{
-    [SerializeField] private CurrentMazeLevel_ScriptableObject level_SO;
+{    
     [SerializeField] private InputField titleInput;
     [SerializeField] private InputField creatorInput;
     [SerializeField] private Image mazeImage;
@@ -28,8 +27,7 @@ public class EditMaze : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mazeLevel = level_SO.CurrentMazeLevel_DO;
-        MazePlayMode.currentMazeLevel = mazeLevel;
+        mazeLevel = MazePlayMode.currentMazeLevel; 
         titleInput.text = mazeLevel.title;
         creatorInput.text = mazeLevel.creator;
         var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
@@ -71,5 +69,4 @@ public class EditMaze : MonoBehaviour
         var listOfMazesFromDataBase = new ListOfMazesFromDataBase();
         listOfMazesFromDataBase.UpdateMaze(mazeLevel.mazeId, mazeLevel);
     }
-
 }

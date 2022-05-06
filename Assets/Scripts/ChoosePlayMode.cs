@@ -9,32 +9,27 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChoosePlayMode : MonoBehaviour
-{
-    [SerializeField] private CurrentMazeLevel_ScriptableObject level_SO;
+{  
     [SerializeField] private Image mazeImage;
     [SerializeField] private Text mazeTitle;
 
     [SerializeField] private List<Text> place_2D_text_list = new List<Text>();
     [SerializeField] private List<Text> place_3D_text_list = new List<Text>();
 
-
-
-    [SerializeField] private GameObject yourNewScorePanel;
-
     [SerializeField] private Button Play2DButton;
     [SerializeField] private Button Play3DButton;
     [SerializeField] private Button CancelButton;
+    [SerializeField] private Button EditButton;
 
     // Start is called before the first frame update
     void Start()
     {
         if (BackGroundManager.bgInstance != null)
             BackGroundManager.bgInstance.Audio.Stop();
-
-        var mazeLevel = level_SO.CurrentMazeLevel_DO;
+       
+        var mazeLevel = MazePlayMode.currentMazeLevel;
 
         mazeTitle.text = $"Title: {mazeLevel.title}\nBy: {mazeLevel.creator}";
-        MazePlayMode.currentMazeLevel = mazeLevel;
 
         var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
         Texture2D textureFromFile = new Texture2D(2, 2);
@@ -45,10 +40,10 @@ public class ChoosePlayMode : MonoBehaviour
         ListTopScores(EnumMazePlayMode.PlayMode2D);
         ListTopScores(EnumMazePlayMode.PlayMode3D);
 
-
         Play2DButton.onClick.AddListener(Play2DOnClick);
         Play3DButton.onClick.AddListener(Play3DOnClick);
         CancelButton.onClick.AddListener(CancelOnClick);
+        EditButton.onClick.AddListener(EditOnClick);
     }
 
     void ListTopScores(EnumMazePlayMode mazePlayMode)
@@ -100,5 +95,10 @@ public class ChoosePlayMode : MonoBehaviour
     {
         MazePlayMode.currentPlayerNewScore = null;
         SceneManager.LoadScene("Scenes/Intro");
+    }
+
+    void EditOnClick()
+    {
+        SceneManager.LoadScene("Scenes/EditMazeLevel");
     }
 }

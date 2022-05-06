@@ -7,10 +7,8 @@ using Assets.Scripts.Enums;
 
 public class HeightMapFromMazeLevel : MonoBehaviour
 {
-    [SerializeField] private CurrentMazeLevel_ScriptableObject currentMazeLevel;
     [SerializeField] private GameObject startingPlatform_GameObject;
     [SerializeField] private GameObject endingGoal_GameObject;
-
 
     [SerializeField] private GameObject miniMapCamera;
     [SerializeField] private GameObject mapToggleButton;
@@ -27,15 +25,15 @@ public class HeightMapFromMazeLevel : MonoBehaviour
     {
         SetPlayMode(allDisabled: true); // put a pause on the Character Controllers while we re-set the scene
 
-        ApplyHeightmap(currentMazeLevel, invertToUseBlackLines: currentMazeLevel.CurrentMazeLevel_DO.invertToUseBlackLines);
+        ApplyHeightmap(invertToUseBlackLines: MazePlayMode.currentMazeLevel.invertToUseBlackLines);
         endingGoal_GameObject.transform.localPosition = new Vector3(
-            currentMazeLevel.CurrentMazeLevel_DO.endPositionRatio.x * 100f,
+            MazePlayMode.currentMazeLevel.endPositionRatio.x * 100f,
             1.3f,
-            currentMazeLevel.CurrentMazeLevel_DO.endPositionRatio.y * 100f);
+            MazePlayMode.currentMazeLevel.endPositionRatio.y * 100f);
         startingPlatform_GameObject.transform.localPosition = new Vector3(
-            currentMazeLevel.CurrentMazeLevel_DO.startPositionRatio.x * 100f,
+            MazePlayMode.currentMazeLevel.startPositionRatio.x * 100f,
             .15f,
-            currentMazeLevel.CurrentMazeLevel_DO.startPositionRatio.y * 100f);        
+            MazePlayMode.currentMazeLevel.startPositionRatio.y * 100f);        
 
         SetPlayMode();  // 2D or 3D
     }
@@ -71,13 +69,13 @@ public class HeightMapFromMazeLevel : MonoBehaviour
         }
     }
 
-    static void ApplyHeightmap(CurrentMazeLevel_ScriptableObject currentMazeLevel, bool invertToUseBlackLines = false)
+    static void ApplyHeightmap(bool invertToUseBlackLines = false)
     {
 
-        var imageAssetBytes = File.ReadAllBytes(currentMazeLevel.CurrentMazeLevel_DO.mazeTextureFileName);
+        var imageAssetBytes = File.ReadAllBytes(MazePlayMode.currentMazeLevel.mazeTextureFileName);
         var heightmap = new Texture2D(2, 2);
         heightmap.LoadImage(imageAssetBytes);
-        heightmap.name = currentMazeLevel.CurrentMazeLevel_DO.mazeTextureFileName;            
+        heightmap.name = MazePlayMode.currentMazeLevel.mazeTextureFileName;            
 
         bool floorIsWhite = invertToUseBlackLines;
         float floorTotal;
