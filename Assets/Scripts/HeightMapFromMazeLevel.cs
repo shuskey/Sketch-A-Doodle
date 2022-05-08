@@ -19,32 +19,34 @@ public class HeightMapFromMazeLevel : MonoBehaviour
 
     private readonly Rect fullScreenViewportRect = new Rect(0, 0, 1, 1);
     private readonly Rect minimapViewportRect = new Rect(0.7f, 0.0f, 0.3f, 0.4f);
+
     private void Awake()
     {
-        SetPlayMode(allDisabled: true); // put a pause on the Character Controllers while we re-set the scene    
+       SetPlayMode(allDisabled: true); // put a pause on the Character Controllers while we re-set the scene    
     }
 
     // Start is called before the first frame update
     void Start()
     {
         ApplyHeightmap(invertToUseBlackLines: MazePlayMode.currentMazeLevel.invertToUseBlackLines);
+        
         endingGoal_GameObject.transform.localPosition = new Vector3(
             MazePlayMode.currentMazeLevel.endPositionRatio.x * 100f,
             1.3f,
             MazePlayMode.currentMazeLevel.endPositionRatio.y * 100f);
+ 
         startingPlatform_GameObject.transform.localPosition = new Vector3(
             MazePlayMode.currentMazeLevel.startPositionRatio.x * 100f,
-            .15f,
+            0.0f,
             MazePlayMode.currentMazeLevel.startPositionRatio.y * 100f);
-        //TODO This is not working
-       // playerArmature.transform.localPosition = new Vector3(0, 0, 0);
+
         SetPlayMode();  // 2D or 3D
     }
 
     void SetPlayMode(bool allDisabled = false)
     {
-        if (allDisabled)  //Helpfull when trying to place the Players Starting platform and getting the player to get placed correctly at start up
-        {
+        if (allDisabled)
+        { 
             playerArmature.GetComponent<StarterAssets.ThirdPersonController>().enabled = false;
             playerArmature.GetComponent<StarterAssets.FirstPersonMoveOnlyController>().enabled = false;
             return;
@@ -59,7 +61,7 @@ public class HeightMapFromMazeLevel : MonoBehaviour
                 playerArmature.GetComponent<StarterAssets.ThirdPersonController>().enabled = false;
                 playerArmature.GetComponent<StarterAssets.FirstPersonMoveOnlyController>().enabled = true;
                 playerArmature.GetComponent<StarterAssets.FirstPersonMoveOnlyController>().Restart();
-                pointerSphere.GetComponent<Renderer>().enabled = false;                                
+                pointerSphere.GetComponent<Renderer>().enabled = false;
                 break;
 
             default:    // 3D Mode
@@ -67,9 +69,10 @@ public class HeightMapFromMazeLevel : MonoBehaviour
                 playerArmature.GetComponent<StarterAssets.FirstPersonMoveOnlyController>().enabled = false;
                 playerArmature.GetComponent<StarterAssets.ThirdPersonController>().enabled = true;
                 playerArmature.GetComponent<StarterAssets.ThirdPersonController>().Restart();
-                pointerSphere.GetComponent<Renderer>().enabled = true;                               
+                pointerSphere.GetComponent<Renderer>().enabled = true;
                 break;            
         }
+        
     }
 
     static void ApplyHeightmap(bool invertToUseBlackLines = false)

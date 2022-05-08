@@ -84,7 +84,7 @@ public class FogOfWar : MonoBehaviour
 
     public GameObject LargePlane(Material material, int layer)
     {
-        return MakePlaneThisSize(102f, 102f, material, layer);  // just as smidge bigger than 100
+        return MakePlaneThisSize(120f, 120f, material, layer);  // just as smidge bigger than 100
     }
 
     public GameObject MakePlaneThisSize(float width, float height, Material material, int layer)
@@ -104,7 +104,7 @@ public class FogOfWar : MonoBehaviour
        // meshCollider.convex = true;
         meshCollider.sharedMesh = modelMesh;
         gameObject.transform.Rotate(90f, 0, 0);
-        gameObject.transform.position = new Vector3(51, 10, 51);
+        gameObject.transform.position = new Vector3(50, 10, 50);
         return gameObject;
     }
 

@@ -5,7 +5,10 @@ To Add/Fix:
 [ ] Add crop and/or additional borders to maze - eliminate the 'sneak around'
 [ ] Edit Screen lets you choose a soundtrack for your maze
 [ ] cool lighting (shader graph) effect like in 10 minute maze at https://www.youtube.com/watch?v=aP9eKrnyxe4
-
+[ ] more sound effects: hitting a wall, jumping
+[ ] Do something with 'score'  add pick-up treasures
+[ ] Add holes
+[ ] Add enemy that will slow you down or take you out
 [ ] Can I get rid of UnityEditor functions, so this runs outside the editor
 [ ] Can a maze be added by giving it a URL to an online image
 [ ] Options for Wall Type: See through or not, High or Low (3D only)

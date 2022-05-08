@@ -18,6 +18,8 @@ public class Timer : MonoBehaviour
     private bool countDownTimerRunning = true;
     private GameObject startPanel;
 
+    private bool giveOneMagicZap = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class Timer : MonoBehaviour
         startPanel.SetActive(true);
         SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.Bleep);
         Time.timeScale = 0; // Pause the Game
+
+        giveOneMagicZap = true;
     }
      public void StopTimer()
     {
@@ -45,9 +49,16 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (giveOneMagicZap)
+        {
+            // This fixed the problem of the PlayerArmature not starting at the correct start location
+            Physics.SyncTransforms();
+            giveOneMagicZap = false;
+        }
+
         var deltaTime = Time.unscaledTime - unscaledTime;
         if (countDownTimerRunning)
-        {            
+        {
             if (deltaTime >= 1.0)
             {
                 countDownStartTime--;
