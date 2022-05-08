@@ -19,12 +19,14 @@ public class HeightMapFromMazeLevel : MonoBehaviour
 
     private readonly Rect fullScreenViewportRect = new Rect(0, 0, 1, 1);
     private readonly Rect minimapViewportRect = new Rect(0.7f, 0.0f, 0.3f, 0.4f);
+    private void Awake()
+    {
+        SetPlayMode(allDisabled: true); // put a pause on the Character Controllers while we re-set the scene    
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetPlayMode(allDisabled: true); // put a pause on the Character Controllers while we re-set the scene
-
         ApplyHeightmap(invertToUseBlackLines: MazePlayMode.currentMazeLevel.invertToUseBlackLines);
         endingGoal_GameObject.transform.localPosition = new Vector3(
             MazePlayMode.currentMazeLevel.endPositionRatio.x * 100f,
@@ -33,8 +35,9 @@ public class HeightMapFromMazeLevel : MonoBehaviour
         startingPlatform_GameObject.transform.localPosition = new Vector3(
             MazePlayMode.currentMazeLevel.startPositionRatio.x * 100f,
             .15f,
-            MazePlayMode.currentMazeLevel.startPositionRatio.y * 100f);        
-
+            MazePlayMode.currentMazeLevel.startPositionRatio.y * 100f);
+        //TODO This is not working
+       // playerArmature.transform.localPosition = new Vector3(0, 0, 0);
         SetPlayMode();  // 2D or 3D
     }
 

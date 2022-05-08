@@ -13,6 +13,7 @@ public class EditMaze : MonoBehaviour
 {    
     [SerializeField] private InputField titleInput;
     [SerializeField] private InputField creatorInput;
+    [SerializeField] private Toggle whiteBackgroundToggle;
     [SerializeField] private Image mazeImage;
     [SerializeField] private GameObject startPositionMarker;
     [SerializeField] private GameObject endPositionMarker;
@@ -34,6 +35,7 @@ public class EditMaze : MonoBehaviour
         Texture2D textureFromFile = new Texture2D(2, 2);
         textureFromFile.LoadImage(imageAssetBytes);
         textureFromFile.name = mazeLevel.mazeTextureFileName;
+        whiteBackgroundToggle.isOn = mazeLevel.invertToUseBlackLines;
         mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
         panelWidth = GetComponent<RectTransform>().rect.width;
         panelHeight = GetComponent<RectTransform>().rect.height;
@@ -61,6 +63,7 @@ public class EditMaze : MonoBehaviour
     {
         mazeLevel.title = titleInput.text;
         mazeLevel.creator = creatorInput.text;
+        mazeLevel.invertToUseBlackLines = whiteBackgroundToggle.isOn;
         mazeLevel.startPositionRatio.x = startPositionMarker.GetComponent<RectTransform>().anchoredPosition.x / panelWidth;
         mazeLevel.startPositionRatio.y = startPositionMarker.GetComponent<RectTransform>().anchoredPosition.y / panelHeight;
         mazeLevel.endPositionRatio.x = endPositionMarker.GetComponent<RectTransform>().anchoredPosition.x / panelWidth;

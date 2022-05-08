@@ -1,9 +1,10 @@
 Sketch A Doodle Readme
 To Add/Fix: 
-[ ] Add toggle for InvertforBlack lines to edit screen.
 [ ] Add brightness/contrast settings to WebCam capture screen
 [ ] Add rotate clockwise 90 degrees to image
 [ ] Add crop and/or additional borders to maze - eliminate the 'sneak around'
+[ ] Edit Screen lets you choose a soundtrack for your maze
+[ ] cool lighting (shader graph) effect like in 10 minute maze at https://www.youtube.com/watch?v=aP9eKrnyxe4
 
 [ ] Can I get rid of UnityEditor functions, so this runs outside the editor
 [ ] Can a maze be added by giving it a URL to an online image
@@ -11,6 +12,9 @@ To Add/Fix:
 [ ] Can this run as a Web App
 
 -- COMPLETE --
+[X] Player is not starting at the starting block, instear it is at 0,0,0 of the maze
+[X] 3D player controller is loosing its orientation - strange 'main camera' setting where to blame
+[X] Add toggle for InvertforBlack lines to edit screen.
 [X] Worse in 2D mode - when falling disable movement - fall in off edge, player correct their path - now it looks like they are on the platform, but they are falling
 [X] When Goal Achieve stop/pause animations/sound etc.
 [X] How to limit player name length - 12 Chars
@@ -67,6 +71,7 @@ To Add/Fix:
 Notes
 FYI - Scripts attached to Player
 Audio Source
+First Person Move Only
 Trigger Tracker
 Timer (connect to Text Mesh Pro) ElapsedTimer Text & StartTimer Text
 Foot Steps - has images for foot prints, location of feet, audio clip for jump landing sound, list of footsteps sound clips
