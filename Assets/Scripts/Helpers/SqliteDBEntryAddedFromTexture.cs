@@ -8,6 +8,7 @@ using UnityEngine;
 
 public static class SqliteDBEntryAddedFromTexture
 {
+#if UNITY_EDITOR
     static string getSqlitePathToDataBaseFile() =>
    $"URI=file:{Application.persistentDataPath}/maze.db";
 
@@ -71,6 +72,6 @@ public static class SqliteDBEntryAddedFromTexture
                 command.ExecuteNonQuery();
             }
         }
-
     }
+#endif
 }

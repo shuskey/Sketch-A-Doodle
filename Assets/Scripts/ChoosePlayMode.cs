@@ -50,6 +50,7 @@ public class ChoosePlayMode : MonoBehaviour
     {
         var placeSting = new string[] {  "1st", "2nd", "3rd", "4th", "5th"  };
         var listOfTopScores = new ListOfHighScoresFromDataBase();
+        listOfTopScores.CreateTableForListOfHighScoresIfNotExists();
         listOfTopScores.GetListOfHighScoresFromDataBase(MazePlayMode.currentMazeLevel.mazeId, mazePlayMode);
         for (int i=0; i<5; i++)
         {

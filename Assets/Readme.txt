@@ -1,20 +1,23 @@
 Sketch A Doodle Readme
 To Add/Fix: 
+[ ] Add Exit button to Play Your Maze Screen
+[ ] Keep track of path on mini-map - perhaps trails
 [ ] Add brightness/contrast settings to WebCam capture screen
-[ ] Add rotate clockwise 90 degrees to image
 [ ] Add crop and/or additional borders to maze - eliminate the 'sneak around'
-[ ] Edit Screen lets you choose a soundtrack for your maze
+[ ] Can this run as a Web App
+
 [ ] cool lighting (shader graph) effect like in 10 minute maze at https://www.youtube.com/watch?v=aP9eKrnyxe4
 [ ] more sound effects: hitting a wall, jumping
 [ ] Do something with 'score'  add pick-up treasures
 [ ] Add holes
 [ ] Add enemy that will slow you down or take you out
-[ ] Can I get rid of UnityEditor functions, so this runs outside the editor
+[ ] Add rotate clockwise 90 degrees to image
+[ ] Edit Screen lets you choose a soundtrack for your maze
 [ ] Can a maze be added by giving it a URL to an online image
 [ ] Options for Wall Type: See through or not, High or Low (3D only)
-[ ] Can this run as a Web App
 
 -- COMPLETE --
+[X] Can I get rid of UnityEditor functions, so this runs outside the editor
 [X] Player is not starting at the starting block, instear it is at 0,0,0 of the maze
 [X] 3D player controller is loosing its orientation - strange 'main camera' setting where to blame
 [X] Add toggle for InvertforBlack lines to edit screen.

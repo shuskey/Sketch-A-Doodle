@@ -45,10 +45,12 @@ public class CaptureSquareScreenShot : MonoBehaviour
 		var filename = "Maze-" + System.DateTime.Now.ToString("ddMMMM-HH-mm-ss");
 		var invalids = System.IO.Path.GetInvalidFileNameChars();
 		var newName = System.String.Join("_", filename.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
-		var completeFileName = Application.dataPath + $"/Mazes/{newName}.png";
+		//var completeFileName = Application.dataPath + $"/Mazes/{newName}.png";
+		var completeFileName = $"{Application.persistentDataPath}/{newName}.png";
 		File.WriteAllBytes(completeFileName, bytes);
-		var relativePathAndFileName = $"Assets/Mazes/{newName}.png";
-		CreateMazeLevelInDataBase(newName, relativePathAndFileName, invertToUseBlackLines: true);
+		//var relativePathAndFileName = $"Assets/Mazes/{newName}.png";
+		//CreateMazeLevelInDataBase(newName, relativePathAndFileName, invertToUseBlackLines: true);
+		CreateMazeLevelInDataBase(newName, completeFileName, invertToUseBlackLines: true);
 	}
 
 	void CreateMazeLevelInDataBase(string name, string fullFileName, bool invertToUseBlackLines)
