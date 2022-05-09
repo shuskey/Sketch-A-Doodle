@@ -1,6 +1,7 @@
 Sketch A Doodle Readme
 To Add/Fix: 
 [ ] Add Exit button to Play Your Maze Screen
+
 [ ] Keep track of path on mini-map - perhaps trails
 [ ] Add brightness/contrast settings to WebCam capture screen
 [ ] Add crop and/or additional borders to maze - eliminate the 'sneak around'
