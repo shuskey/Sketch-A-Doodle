@@ -75,7 +75,7 @@ public class HeightMapFromMazeLevel : MonoBehaviour
         
     }
 
-    static void ApplyHeightmap(bool invertToUseBlackLines = false)
+    void ApplyHeightmap(bool invertToUseBlackLines = false)
     {
 
         var imageAssetBytes = File.ReadAllBytes(MazePlayMode.currentMazeLevel.mazeTextureFileName);
@@ -142,30 +142,59 @@ public class HeightMapFromMazeLevel : MonoBehaviour
             map = mapColors;
         }
 
-        DetectFloor(invertToUseBlackLines, out floorTotal, out floorCount, out floorAverageGray, w2, map);
-
-        // Assign texture data to heightmap
-        for (int y = 0; y < w2; y++)
+        // break into 4 x 4 grids and do each grid separately
+        for (int gridY = 0; gridY < 4; gridY++)
         {
-            for (int x = 0; x < w2; x++)
+            for (int gridX = 0; gridX < 4; gridX++)
             {
-                heightmapData[y, x] = normalizeHeightData(
-                    map[y * w2 + x].grayscale,
-                    floorAverageGray,
-                    invertToUseBlackLines);
+                DetectFloor(invertToUseBlackLines, out floorTotal, out floorCount, out floorAverageGray, w2, map, gridX, gridY);
+
+                // Assign texture data to heightmap
+
+                for (int y = QuadStart(gridY, w2); y <= QuadEnd(gridY, w2); y++)
+                {
+                    for (int x = QuadStart(gridX, w2); x <= QuadEnd(gridX, w2); x++)
+                    {
+                        heightmapData[y, x] = normalizeHeightData(
+                            map[y * w2 + x].grayscale,
+                            floorAverageGray,
+                            invertToUseBlackLines);
+                    }
+                }
             }
         }
+
         terrain.SetHeights(0, 0, heightmapData);
 
-        static void DetectFloor(bool invertToUseBlackLines, out float floorTotal, out float floorCount, out float floorAverageGray, int w2, Color[] map)
+        int QuadStart(int quadIndex, int w2) => (quadIndex * w2) / 4;
+
+        int QuadEnd(int quadIndex, int w2) => QuadStart(quadIndex + 1, w2) - 1;
+        
+        void DetectFloor(bool invertToUseBlackLines, out float floorTotal, out float floorCount, out float floorAverageGray, int w2,
+            Color[] map, int gridX, int gridY)
         {
-            // find floor Average
-            float expectedFloor = 0.3f;
+            // find floor Average (for this quadrant)
+            float greyTotal = 0;
+            float greyCount = 0;
+            for (int y = QuadStart(gridY, w2); y <= QuadEnd(gridY, w2); y++)
+            {
+                for (int x = QuadStart(gridX, w2); x <= QuadEnd(gridX, w2); x++)
+                {
+                    var grayBeingProcessed = map[y * w2 + x].grayscale;
+                    greyTotal += grayBeingProcessed;
+                    greyCount++;
+                }
+            }
+            float averageForThisQuadrant = greyTotal / greyCount;
+
+            // find floor Average (for this quadrant)
+            float expectedFloor = (1.0f - averageForThisQuadrant) / 2.50f;
+            // This denominator might make a great 'brightness' factor
             floorCount = 0;
             floorTotal = 0;
-            for (int y = 0; y < w2; y++)
+            for (int y = QuadStart(gridY, w2); y < QuadEnd(gridY, w2); y++)
             {
-                for (int x = 0; x < w2; x++)
+                for (int x = QuadStart(gridX, w2); x < QuadEnd(gridX, w2); x++)
                 {
                     var grayBeingProcessed = invertToUseBlackLines ? 1f - map[y * w2 + x].grayscale : map[y * w2 + x].grayscale;
                     if (grayBeingProcessed < expectedFloor)

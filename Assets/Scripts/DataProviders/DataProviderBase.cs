@@ -9,14 +9,16 @@ namespace Assets.Scripts.DataProviders
     class DataProviderBase
     {
 
-        public void CreateDataBaseFileIfNotExists()
+        public bool CreateDataBaseFileIfNotExists()
         {
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 if (!File.Exists(getDirectPathToDataBaseFile()))
                 {
                     SqliteConnection.CreateFile(getDirectPathToDataBaseFile());
+                    return false; // file did not exist
                 }
+                return true; // file did indeed exist
             }
         }
 
