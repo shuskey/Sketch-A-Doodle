@@ -21,6 +21,7 @@ namespace Assets.Scripts.DataObjects
         [UnityEngine.Header("Range 0.0 to 1.0 for each coordinate.")] public UnityEngine.Vector2 endPositionRatio;
         [UnityEngine.Header("Date Created")] public System.DateTime createdDate;
         [UnityEngine.Header("Populatity based on number of completed plays")] public int numberOfPlayThroughs;
+        public Texture2D mazeTexture;  // probably only exists in playmode
 
 
         public MazeLevel(string mazeTextureFileName, bool invertToUseBlackLines) 

@@ -11,6 +11,9 @@ namespace Assets.Scripts.DataProviders
 
         public bool CreateDataBaseFileIfNotExists()
         {
+#if UNITY_WEBGL
+            return true;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 if (!File.Exists(getDirectPathToDataBaseFile()))
@@ -20,6 +23,7 @@ namespace Assets.Scripts.DataProviders
                 }
                 return true; // file did indeed exist
             }
+#endif
         }
 
         public string SafeGetString(IDataReader reader, int colIndex)

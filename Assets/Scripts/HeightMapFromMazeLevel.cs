@@ -78,10 +78,12 @@ public class HeightMapFromMazeLevel : MonoBehaviour
     void ApplyHeightmap(bool invertToUseBlackLines = false)
     {
 
-        var imageAssetBytes = File.ReadAllBytes(MazePlayMode.currentMazeLevel.mazeTextureFileName);
-        var heightmap = new Texture2D(2, 2);
-        heightmap.LoadImage(imageAssetBytes);
-        heightmap.name = MazePlayMode.currentMazeLevel.mazeTextureFileName;            
+        //var imageAssetBytes = File.ReadAllBytes(MazePlayMode.currentMazeLevel.mazeTextureFileName);
+        //var heightmap = new Texture2D(2, 2);
+        //heightmap.LoadImage(imageAssetBytes);
+        //heightmap.name = MazePlayMode.currentMazeLevel.mazeTextureFileName;
+
+        var heightmap = MazePlayMode.currentMazeLevel.mazeTexture;
 
         bool floorIsWhite = invertToUseBlackLines;
         float floorTotal;

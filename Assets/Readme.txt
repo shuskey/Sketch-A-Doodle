@@ -1,8 +1,13 @@
 Sketch A Doodle Readme
 To Add/Fix: 
 
-[ ] Fix Follow Camer Going through walls
-[ ] Can this run as a Web App
+[X] Enable on-screen joystick controls
+[X] Can this run as a Web App - WebGL on mobile will be interesting to test to find the limitations
+
+[ ] Fix Follow Camera Going through walls
+[ ] Let try and iOS app
+[ ] Lets try an andropid app
+
 
 [ ] Keep track of path on mini-map - perhaps trails
 [ ] Add crop and/or additional borders to maze - eliminate the 'sneak around'
@@ -18,6 +23,7 @@ To Add/Fix:
 [ ] Can this be done like SLC - Software Loadable Content? - Should prorably look into Unity Game Services
 
 -- COMPLETE --
+
 [X] Add several 'pre-made' mazes to DB for initial startup
 [X] Contrast correction over more 'grids'
 ??Perhaps not needed anymore:

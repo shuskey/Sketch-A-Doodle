@@ -47,20 +47,30 @@ public class CaptureSquareScreenShot : MonoBehaviour
 		var newName = System.String.Join("_", filename.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
 		//var completeFileName = Application.dataPath + $"/Mazes/{newName}.png";
 		var completeFileName = $"{Application.persistentDataPath}/{newName}.png";
+
+		Debug.Log($"complete filename of newly grabbed maze = {completeFileName}");
+
 		File.WriteAllBytes(completeFileName, bytes);
+		Texture2D textureFromFile = new Texture2D(2, 2);
+        textureFromFile.LoadImage(bytes);
 		//var relativePathAndFileName = $"Assets/Mazes/{newName}.png";
 		//CreateMazeLevelInDataBase(newName, relativePathAndFileName, invertToUseBlackLines: true);
-		CreateMazeLevelInDataBase(newName, completeFileName, invertToUseBlackLines: true);
+		CreateMazeLevelInDataBase(newName, completeFileName, invertToUseBlackLines: true, textureFromFile);
 	}
 
-	void CreateMazeLevelInDataBase(string name, string fullFileName, bool invertToUseBlackLines)
+	void CreateMazeLevelInDataBase(string name, string fullFileName, bool invertToUseBlackLines, Texture2D texture)
     {
+		var newMazeLevel = new MazeLevel(fullFileName, invertToUseBlackLines);
+		newMazeLevel.mazeTexture = texture;
+
+#if UNITY_WEBGL
+		MazeList.Mazes.Add(newMazeLevel);
+#else
 		var mazeListDataBase = new ListOfMazesFromDataBase();
 		mazeListDataBase.CreateDataBaseFileIfNotExists();
-		mazeListDataBase.CreateTableForListOfMazesIfNotExists();
-		var newMazeLevel = new MazeLevel(fullFileName, invertToUseBlackLines);
+		mazeListDataBase.CreateTableForListOfMazesIfNotExists();		
 		mazeListDataBase.AddMaze(newMazeLevel);
-
+#endif
 		MazePlayMode.currentMazeLevel = newMazeLevel;		
 	}
 }

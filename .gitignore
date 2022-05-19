@@ -8,6 +8,8 @@
 /[Bb]uild/
 /[Bb]uilds/
 /WindowsBuild/
+/WebGLBuild/
+/iOSBuild/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 

@@ -22,6 +22,9 @@ namespace Assets.Scripts.DataProviders
 
         public void CreateTableForListOfHighScoresIfNotExists()
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -43,10 +46,14 @@ namespace Assets.Scripts.DataProviders
                     reader.Close();
                 }
             }
+#endif
         }
 
         public void GetListOfHighScoresFromDataBase(int mazeId, EnumMazePlayMode mazePlayMode, string optionalPlayerName = null)
         {
+#if UNITY_WEBGL
+            return;
+#else
             highScores.Clear();
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
@@ -66,7 +73,6 @@ namespace Assets.Scripts.DataProviders
                     }
                     command.CommandText += "\n ORDER BY scoreAwarded DESC, timeInOneHundredsOfSeconds ASC;";
 
-
                     IDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -84,10 +90,14 @@ namespace Assets.Scripts.DataProviders
                     reader.Close();
                 }
             }
+#endif
         }
 
         public void AddHighScore(MazeHighScore newHighScore)
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -109,10 +119,14 @@ namespace Assets.Scripts.DataProviders
                     command.ExecuteNonQuery();             
                 }
             }
+#endif
         }
 
         public void RemoveHighScoresForThisMaze(MazeLevel mazeLevel)
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -128,10 +142,14 @@ namespace Assets.Scripts.DataProviders
                     command.ExecuteNonQuery();
                 }
             }
+#endif
         }
 
         public void RemoveHighScoresForThisPlayer(string name)
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -147,10 +165,14 @@ namespace Assets.Scripts.DataProviders
                     command.ExecuteNonQuery();
                 }
             }
+#endif
         }
 
         public void UpdateHighScore(int highScoreId, MazeHighScore newHighScore)
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -172,6 +194,7 @@ namespace Assets.Scripts.DataProviders
                     command.ExecuteNonQuery();
                 }
             }
+#endif
         }
     }
 }        

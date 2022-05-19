@@ -11,17 +11,19 @@ namespace Assets.Scripts.DataProviders
 {
     class ListOfMazesFromDataBase : DataProviderBase
     {
-        public List<MazeLevel> mazeList;        
 
         public ListOfMazesFromDataBase()           
         {            
-            mazeList = new List<MazeLevel>();
+            MazeList.Mazes = new List<MazeLevel>();
         }
 
         // TODO: Create a RemoveMaze
 
         public void CreateTableForListOfMazesIfNotExists()
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -46,10 +48,14 @@ namespace Assets.Scripts.DataProviders
                     reader.Close();
                 }
             }
+#endif
         }
 
         public void GetListOfMazesFromDataBase()
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -79,15 +85,19 @@ namespace Assets.Scripts.DataProviders
                             createdDate: reader.GetDateTime(9),
                             numberOfPlayThroughs: reader.GetInt32(10)
                             );
-                        mazeList.Add(nextMaze);
+                        MazeList.Mazes.Add(nextMaze);
                     }
                     reader.Close();
                 }
             }
+#endif
         }
 
         public void RemoveMaze(MazeLevel mazeLevel)
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -103,11 +113,16 @@ namespace Assets.Scripts.DataProviders
                     command.ExecuteNonQuery();
                 }
             }
+#endif
         }
 
 
         public void AddMaze(MazeLevel newMazeLevel)
         {
+#if UNITY_WEBGL
+            MazeList.Mazes.Add(newMazeLevel);  // We are running without a database, so lets just add this to the running 'in memory' list
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -136,10 +151,14 @@ namespace Assets.Scripts.DataProviders
                     command.ExecuteNonQuery();
                 }
             }
+#endif
         }
 
         public void UpdateMaze(int mazeId, MazeLevel updateMazeLevel)
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -170,6 +189,7 @@ namespace Assets.Scripts.DataProviders
                     command.ExecuteNonQuery();
                 }
             }
+#endif
         }
     }
 }

@@ -6,6 +6,7 @@ using System.IO;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -31,12 +32,19 @@ public class EditMaze : MonoBehaviour
         mazeLevel = MazePlayMode.currentMazeLevel; 
         titleInput.text = mazeLevel.title;
         creatorInput.text = mazeLevel.creator;
-        var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
-        Texture2D textureFromFile = new Texture2D(2, 2);
-        textureFromFile.LoadImage(imageAssetBytes);
-        textureFromFile.name = mazeLevel.mazeTextureFileName;
-        whiteBackgroundToggle.isOn = mazeLevel.invertToUseBlackLines;
+
+        var textureFromFile = MazePlayMode.currentMazeLevel.mazeTexture;
         mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+
+//#if !UNITY_WEBGL
+//        var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
+//        Texture2D textureFromFile = new Texture2D(2, 2);
+//        textureFromFile.LoadImage(imageAssetBytes);
+//        textureFromFile.name = mazeLevel.mazeTextureFileName;      
+//        mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+//#endif
+
+        whiteBackgroundToggle.isOn = mazeLevel.invertToUseBlackLines;
         panelWidth = GetComponent<RectTransform>().rect.width;
         panelHeight = GetComponent<RectTransform>().rect.height;
         startPositionMarker.GetComponent<RectTransform>().anchoredPosition =
@@ -72,4 +80,35 @@ public class EditMaze : MonoBehaviour
         var listOfMazesFromDataBase = new ListOfMazesFromDataBase();
         listOfMazesFromDataBase.UpdateMaze(mazeLevel.mazeId, mazeLevel);
     }
+
+//    void Update()
+//    {
+//#if UNITY_WEBGL
+//        StartCoroutine(GetTexture());
+//#endif
+
+//    }
+
+//    IEnumerator GetTexture()
+//    {
+//        var mazeLevel = MazePlayMode.currentMazeLevel;
+
+//        using (UnityWebRequest loader = UnityWebRequestTexture.GetTexture(mazeLevel.mazeTextureFileName))
+//        {
+//            yield return loader.SendWebRequest();
+
+//            if (string.IsNullOrEmpty(loader.error))
+//            {
+//                var textureFromFile = DownloadHandlerTexture.GetContent(loader);
+//                textureFromFile.name = mazeLevel.mazeTextureFileName;
+//                TextureScale.Scale(textureFromFile, 200, 200);
+
+//                mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+//            }
+//            else
+//            {
+//                Debug.LogError($"Error loading Texture '{loader.uri}': {loader.error}");
+//            }
+//        }
+//    }
 }

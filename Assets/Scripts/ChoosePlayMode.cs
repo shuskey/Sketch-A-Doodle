@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -30,12 +31,18 @@ public class ChoosePlayMode : MonoBehaviour
         var mazeLevel = MazePlayMode.currentMazeLevel;
 
         mazeTitle.text = $"Title: {mazeLevel.title}\nBy: {mazeLevel.creator}";
-
-        var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
-        Texture2D textureFromFile = new Texture2D(2, 2);
-        textureFromFile.LoadImage(imageAssetBytes);
-        textureFromFile.name = mazeLevel.mazeTextureFileName;
+        var textureFromFile = MazePlayMode.currentMazeLevel.mazeTexture;
         mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+
+
+//#if !UNITY_WEBGL
+//        var imageAssetBytes = File.ReadAllBytes(mazeLevel.mazeTextureFileName);
+//        Texture2D textureFromFile = new Texture2D(2, 2);
+//        textureFromFile.LoadImage(imageAssetBytes);
+//        textureFromFile.name = mazeLevel.mazeTextureFileName;
+//        mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+//        mazeLevel.mazeTexture = textureFromFile;   // pass this on to PlayMode
+//#endif
 
         ListTopScores(EnumMazePlayMode.PlayMode2D);
         ListTopScores(EnumMazePlayMode.PlayMode3D);
@@ -102,4 +109,36 @@ public class ChoosePlayMode : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/EditMazeLevel");
     }
+
+//    void Update()
+//    {
+//#if UNITY_WEBGL
+//        StartCoroutine(GetTexture());
+//#endif
+
+//    }
+
+//    IEnumerator GetTexture()
+//    {
+//        var mazeLevel = MazePlayMode.currentMazeLevel;
+
+//        using (UnityWebRequest loader = UnityWebRequestTexture.GetTexture(mazeLevel.mazeTextureFileName))
+//        {
+//            yield return loader.SendWebRequest();
+
+//            if (string.IsNullOrEmpty(loader.error))
+//            {
+//                var textureFromFile = DownloadHandlerTexture.GetContent(loader);
+//                textureFromFile.name = mazeLevel.mazeTextureFileName;
+//                TextureScale.Scale(textureFromFile, 200, 200);
+
+//                mazeImage.sprite = Sprite.Create(textureFromFile, new Rect(0.0f, 0.0f, textureFromFile.width, textureFromFile.height), new Vector2(0.5f, 0.5f));
+//                mazeLevel.mazeTexture = textureFromFile; // pass this on to PlayMode
+//            }
+//            else
+//            {
+//                Debug.LogError($"Error loading Texture '{loader.uri}': {loader.error}");
+//            }
+//        }
+//    }
 }

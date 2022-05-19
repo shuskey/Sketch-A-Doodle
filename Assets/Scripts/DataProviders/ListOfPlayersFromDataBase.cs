@@ -22,6 +22,9 @@ namespace Assets.Scripts.DataProviders
 
         public void CreateTableForListOfPlayersIfNotExists()
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -42,11 +45,15 @@ namespace Assets.Scripts.DataProviders
                     command.Parameters.Add("@name", DbType.String).Value = "Guest";
                     command.ExecuteNonQuery();                 
                 }
-            }                        
+            }  
+#endif
         }
 
         public void GetListOfPlayersFromDataBase()
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -69,10 +76,14 @@ namespace Assets.Scripts.DataProviders
                     reader.Close();
                 }
             }
+#endif
         }
 
         public void AddPlayer(string name)           
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -86,11 +97,15 @@ namespace Assets.Scripts.DataProviders
                     command.Parameters.Add("name", DbType.String).Value = name;
                     command.ExecuteNonQuery();
                 }
-            }            
+            } 
+#endif
         }
 
         public void RemovePlayer(string name)
         {
+#if UNITY_WEBGL
+            return;
+#else
             using (SqliteConnection sqlconn = new SqliteConnection())
             {
                 sqlconn.ConnectionString = getSqlitePathToDataBaseFile();
@@ -105,6 +120,7 @@ namespace Assets.Scripts.DataProviders
                     command.ExecuteNonQuery();
                 }
             }
+#endif
         }
     }        
 }
