@@ -82,6 +82,7 @@ namespace Assets.Scripts.DataProviders
         public void AddPlayer(string name)           
         {
 #if UNITY_WEBGL
+            players.Add(name);
             return;
 #else
             using (SqliteConnection sqlconn = new SqliteConnection())
@@ -104,6 +105,7 @@ namespace Assets.Scripts.DataProviders
         public void RemovePlayer(string name)
         {
 #if UNITY_WEBGL
+            players.Remove(name);
             return;
 #else
             using (SqliteConnection sqlconn = new SqliteConnection())

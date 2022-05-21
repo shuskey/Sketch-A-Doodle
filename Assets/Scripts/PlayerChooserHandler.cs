@@ -12,6 +12,8 @@ public class PlayerChooserHandler : MonoBehaviour
     [SerializeField] private Button removePlayerButton;
     [SerializeField] private string mazeDataBaseFileName;
 
+    private ListOfPlayersFromDataBase listOfPlayersFromDataBase;
+
     private void Awake()
     {
         MazeDataBase.fileName = mazeDataBaseFileName;
@@ -21,10 +23,16 @@ public class PlayerChooserHandler : MonoBehaviour
     {
         var dropdown = transform.GetComponent<Dropdown>();
         dropdown.options.Clear();        
-        var listOfPlayersFromDataBase = new ListOfPlayersFromDataBase();
+        listOfPlayersFromDataBase = new ListOfPlayersFromDataBase();
         listOfPlayersFromDataBase.CreateDataBaseFileIfNotExists();
         listOfPlayersFromDataBase.CreateTableForListOfPlayersIfNotExists();
         listOfPlayersFromDataBase.GetListOfPlayersFromDataBase();
+
+        if (listOfPlayersFromDataBase.players.Count == 0)
+        {
+            listOfPlayersFromDataBase.AddPlayer("Guest");
+        }
+
         var players = listOfPlayersFromDataBase.players;
         var indexOfCurrentPlayer = 0;
         var i = 0;
@@ -47,6 +55,8 @@ public class PlayerChooserHandler : MonoBehaviour
 
     void PlayerSelected(Dropdown dropdown)
     {
+        if (dropdown.options.Count == 0)
+            return;
         MazePlayMode.currentPlayer = dropdown.options[dropdown.value].text;
     }
 
@@ -60,8 +70,7 @@ public class PlayerChooserHandler : MonoBehaviour
             return;
         if (string.IsNullOrEmpty(newPlayerName.Trim()))
             return;
-
-        var listOfPlayersFromDataBase = new ListOfPlayersFromDataBase();
+        
         listOfPlayersFromDataBase.AddPlayer(newPlayerName.Trim());
 
         UpdateDropdownWithSelection(dropdown, newPlayerName.Trim());
@@ -76,8 +85,7 @@ public class PlayerChooserHandler : MonoBehaviour
 
         if (playerNameToBeRemoved == "Guest")
             return;
-
-        var listOfPlayersFromDataBase = new ListOfPlayersFromDataBase();
+        
         listOfPlayersFromDataBase.RemovePlayer(playerNameToBeRemoved);
 
         UpdateDropdownWithSelection(dropdown, "Guest");
@@ -86,7 +94,7 @@ public class PlayerChooserHandler : MonoBehaviour
     void UpdateDropdownWithSelection(Dropdown dropdown, string nameToSelect)
     {
         dropdown.options.Clear();
-        var listOfPlayersFromDataBase = new ListOfPlayersFromDataBase();
+        
         listOfPlayersFromDataBase.GetListOfPlayersFromDataBase();
         var players = listOfPlayersFromDataBase.players;
         var indexOfSelected = 0;
