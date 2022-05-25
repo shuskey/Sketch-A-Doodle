@@ -488,6 +488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSelectPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1535360355471385696, guid: 41316f7c36c975248b08b03d02155eee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1535360355471385697, guid: 41316f7c36c975248b08b03d02155eee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -767,7 +771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 91.999985, y: -27.999939}
+  m_AnchoredPosition: {x: 92, y: -27.999878}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809361483

@@ -1,9 +1,9 @@
 ﻿Push-Location .\WebGLBuild
 
 #should see if newer version of instructions are in current directory then copy it to the WebGLBuildDynaDraw directory
-#Copy-Item '..\DynaDrawInstructions.pdf' ..\WebGLBuild
+Copy-Item '..\.htaccess' ..\WebGLBuild
 
-#Write-S3Object -BucketName photoloom.com -File .\DynaDrawInstructions.pdf -Key dynadraw/DynaDrawInstructions.pdf
+Write-S3Object -BucketName photoloom.com -File .\.htaccess -Key doodlemaze/.htaccess
 Write-S3Object -BucketName photoloom.com -File .\index.html -Key doodlemaze/index.html
 
 Write-S3Object -BucketName photoloom.com -Folder .\TemplateData -KeyPrefix doodlemaze/TemplateData
@@ -29,7 +29,7 @@ $metaDataData = @{'content-type' = 'application/octet-stream'}
 #$metaDataData.Add('content-encoding', 'br')
 $metaDataJs = @{'content-type'= 'application/javascript'}
 #$metaDataJs.Add('content-encoding', 'br' )
-$metaDataWasm = @{ 'content-type' = 'application/wasm'}
+$metaDataWasm = @{ 'Content-Type' = 'application/wasm'}
 #$metaDataWasm.Add( 'content-encoding', 'br')
 Write-S3Object -BucketName photoloom.com -file .\Build\WebGLBuild.data -Key doodlemaze/Build/WebGLBuild.data -Metadata $metaDataData
 Write-S3Object -BucketName photoloom.com -file .\Build\WebGLBuild.framework.js -Key doodlemaze/Build/WebGLBuild.framework.js -Metadata $metaDataJr
